@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      const fila = 8;
+      let simbp = "# ";
+      let simbip = " #";
+      for (let i; i < fila / 2; i++) {
+        simbp += "# ";
+      }
+      for (let y; y < fila / 2; y++) {
+        simbip += " #";
+      }
+      for (let numfila = 0; numfila < fila; numfila++) {
+        for (let colum = 0; colum < fila; colum++) {
+          if (numfila % 2 == 0) {
+            document.write(simbp + "<br/>");
+          } else if (numfila % 2 != 0) {
+            document.write(simbip + "<br/>");
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
