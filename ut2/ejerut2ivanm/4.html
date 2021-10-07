@@ -1,35 +1,75 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <script>
-       let area;
-      do{
-    area = prompt("cual es la figura con la que desea trabajar", "");
-        if(area=="s"||area=="S"){
-           let lado = prompt("cual es el lado del cuadrado", "");
-           let areaS = lado*2;
-           document.write( " Lado del cuadrado: "+lado+" centímetros "+"<br/>"
-           +"El area del cuadrado es: "+areaS + "<br/>");
-       }else if(area=="C"||area=="c"){
-        let radio = prompt("cual es el radio del circulo", "");
-           let areaC = Math.PI*(radio^2);
-           document.write( " Radio del circulo: "+radio+" centímetros "+"<br/>"
-           +"El area del circulo es: "+areaC + "<br/>");
-       }else if(area=="T"||area=="t"){
-        let lado = prompt("cual es el lado del cuadrado", "");
-           let areaS = lado*2;
-           document.write( " Lado del cuadrado: "+lado+"centímetros "+"<br/>"
-           +"El area del cuadrado es: "+areaS + "<br/>");
+      let area;
+      do {
+        area = prompt("cual es la figura con la que desea trabajar", "");
+        if (area == "s" || area == "S") {
+          let lado = prompt("cual es el lado del cuadrado", "");
+          let areaS = lado ^ 2;
+          let perimetroS = lado * 4;
+          document.write(
+            " Lado del cuadrado: " +
+              lado +
+              " centímetros " +
+              "<br/>" +
+              "El perimetro del cuadrado es: " +
+              perimetroS +
+              "El area del cuadrado es: " +
+              areaS +
+              "<br/>"
+          );
+        } else if (area == "C" || area == "c") {
+          let radio = prompt("cual es el radio del circulo", "");
+          let areaC = Math.PI * (radio ^ 2);
+          let perimetroC = 2 * Math.PI * radio;
+          document.write(
+            " Radio del circulo: " +
+              radio +
+              " centímetros " +
+              "<br/>" +
+              "El perimetro del circulo es: " +
+              perimetroC +
+              "El area del circulo es: " +
+              areaC +
+              "<br/>"
+          );
+        } else if (area == "T" || area == "t") {
+          let base = prompt("cual es la base del triangulo", "");
+          let altura = prompt("cual es la altura del triangulo", "");
+          let areaT = (base * altura) / 2;
+          let perimetroT = base * 3;
+          document.write(
+            " base del triangulo: " +
+              base +
+              "centímetros " +
+              " Altura del triangulo: " +
+              altura +
+              "centímetros " +
+              "<br/>" +
+              "El perimetro del triangulo es: " +
+              perimetroT +"<br/>" +
+              "El area del triangulo es: " +
+              areaT +
+              "<br/>"
+          );
         }
-    }while(area!="s" && area!="S" && area!="C" && area!="c" && area!="t" && area!="T");
-    
+      } while (
+        area != "s" &&
+        area != "S" &&
+        area != "C" &&
+        area != "c" &&
+        area != "t" &&
+        area != "T"
+      );
     </script>
-</body>
+  </body>
+</html>
