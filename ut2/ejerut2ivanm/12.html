@@ -9,21 +9,21 @@
 
   <body>
     <script>
-      const fila = 8;
+      const fila = 9;
       let simbp = "# ";
       let simbip = " #";
-      for (let i; i < fila / 2; i++) {
+      for (let i = 0; i < fila - 1; i++) {
         simbp += "# ";
       }
-      for (let y; y < fila / 2; y++) {
+      for (let y = 0; y < fila - 2; y++) {
         simbip += " #";
       }
       for (let numfila = 0; numfila < fila; numfila++) {
         for (let colum = 0; colum < fila; colum++) {
           if (numfila % 2 == 0) {
-            document.write(simbp + "<br/>");
+            console.log(simbp);
           } else if (numfila % 2 != 0) {
-            document.write(simbip + "<br/>");
+            console.log(simbip);
           }
         }
       }
