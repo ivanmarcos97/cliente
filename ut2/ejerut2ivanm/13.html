@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+let texto = "auceBiuduuBDHD, FYHRFHBRTGDBBR, cbshscBcHHF";
+        let caracter = "c";
+        function contarBs(texto){
+            let B = 0;
+            for(let i = 0 ; i < texto.length ; i++){
+                if(texto[i] == "B"){
+                    B++;     
+                }
+            }
+            return B;
+        }
+        function contarCaracter(texto, caracter){
+            let contador = 0;
+            for(let i = 0 ; i < texto.length ; i++){
+                if(texto[i] == caracter){
+                    contador++;     
+                }
+            }
+            return contador;
+        }
+        document.write("la cadena de texto "+texto,"<br>")
+        document.write("Contiene " + contarBs(texto) + " B ");
+        document.write(" y contiene " + contarCaracter(texto, caracter) + " " + caracter );
+    
+    </script>
+</body>
+
+</html>

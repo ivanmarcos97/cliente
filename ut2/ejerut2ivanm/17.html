@@ -1,0 +1,45 @@
+function convertToBinary1 (number) {
+    let num = number;
+    let binary = (num % 2).toString();
+    for (; num > 1; ) {
+        num = parseInt(num / 2);
+        binary =  (num % 2) + (binary);
+    }
+    console.log(binary);
+}
+
+window.onload = function () {
+    console.log(convertToBinary1(25));
+    console.log(convertToBinary1(8));
+}
+
+    
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+function binario (numero) {
+    let num = numero;
+    let binari = (num % 2).toString();
+    for (; num > 1; ) {
+        num = parseInt(num / 2);
+        binari =  (num % 2) + (binari);
+    }
+    console.log(binari);
+}
+
+    console.log(binario(2));
+
+
+
+    </script>
+  </body>
+</html>
