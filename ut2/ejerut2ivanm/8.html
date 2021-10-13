@@ -9,17 +9,27 @@
 
   <body>
     <script>
-      let npresi;
-      let apresi;
+      let presi = "";
+      let fallos = 0;
+      let pregunta =
+        "¿Cuál fue el primer presidente de la democracia española?";
       do {
-        presi = prompt(
-          "¿Cuál  es el apellido del primer presidente de la democracia española? ",
-          ""
-        );
-        do{
-
-        }while
-      } while (presi != "suarez");
+        presi = prompt(pregunta, "");
+        fallos++;
+        if (fallos > 0) {
+          pregunta =
+            "ERROR. Inténtelo de nuevo. ¿Cuál fue el primer presidente de la democracia española?";
+        }
+        if (presi == "Adolfo") {
+          pregunta =
+            "Te falta el apellido. ¿Cuál fue el primer presidente de la democracia española?";
+        }
+        if (presi == "Suarez") {
+          pregunta =
+            "Te falta el Nombre. ¿Cuál fue el primer presidente de la democracia española?";
+        }
+      } while (presi != "Adolfo Suarez");
+      alert("Bienvenido");
     </script>
   </body>
 </html>
