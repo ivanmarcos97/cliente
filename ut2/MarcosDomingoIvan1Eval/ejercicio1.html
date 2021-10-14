@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      alert(
+        "1 suma \n 2 resta \n 3 multiplicacion \n 4 division \n 5 modulo \n 6 elevacion \n 0 cancelar"
+      );
+      let opcion;
+      do {
+        opcion = prompt("Elige una opcion");
+      } while (opcion > 6 || opcion < 0);
+
+      function Suma(a, b) {
+        return a + b;
+      }
+      function Resta(a, b) {
+        return a - b;
+      }
+      function Multiplicacion(a, b) {
+        return a * b;
+      }
+      function Division(a, b) {
+        return a / b;
+      }
+      function Modulo(a, b) {
+        return a % b;
+      }
+      function Elevacion(a, b) {
+        return a ** b;
+      }
+      function opera(a, b, x) {
+        return x(a, b);
+      }
+      let a = 0;
+      let b = 0;
+      let resultado;
+      switch (opcion) {
+        case "1":
+          a = prompt("Primer operando de la suma");
+
+          b = prompt("Segundo operando de la suma");
+          resultado = opera(a, b, Suma);
+          alert(resultado);
+          break;
+        case "2":
+          a = prompt("Primer operando de la resta");
+
+          b = prompt("Segundo operando de la resta");
+          resultado = opera(a, b, Resta);
+          alert(resultado);
+          break;
+        case "3":
+          a = prompt("Primer operando de la multiplicacion");
+
+          b = prompt("Segundo operando de la multiplicacion");
+          resultado = opera(a, b, Multiplicacion);
+          alert(resultado);
+          break;
+        case "4":
+          a = prompt("Primer operando de la division");
+
+          b = prompt("Segundo operando de la division");
+          resultado = opera(a, b, Division);
+          alert(resultado);
+          break;
+        case "5":
+          a = prompt("Primer operando del modulo");
+
+          b = prompt("Segundo operando del modulo");
+          resultado = opera(a, b, Modulo);
+          alert(resultado);
+          break;
+        case "6":
+          a = prompt("Primer operando de la elevacion");
+
+          b = prompt("Segundo operando de la elevacion");
+          resultado = opera(a, b, Elevacion);
+          alert(resultado);
+          break;
+        case "0":
+          alert("Ha salido con éxito");
+          break;
+      }
+    </script>
+  </body>
+</html>
