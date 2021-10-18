@@ -10,6 +10,7 @@
     <script>
       let alumno = 0;
       let matriculado;
+      let nota;
       for (alumno = 0; alumno < 20; alumno++) {
         do {
           matriculado = prompt(
@@ -26,7 +27,7 @@
         if (matriculado == "S") {
           for (let modulo = 0; modulo <= 5; modulo++) {
             do {
-              let nota = prompt("¿que nota tienes en este modulo?");
+              nota = prompt("¿que nota tienes en este modulo?");
             } while (nota > 10 || nota < 0);
             let masmodulo = prompt("¿tienes mas modulos?");
             if (masmodulo == "no") {
