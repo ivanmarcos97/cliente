@@ -11,7 +11,7 @@
       let alumno = 0;
       let matriculado;
       let nota;
-      for (alumno = 0; alumno < 20; alumno++) {
+      for (alumno = 1; alumno <= 20; alumno++) {
         do {
           matriculado = prompt(
             "alumno " +
@@ -25,15 +25,20 @@
         );
 
         if (matriculado == "S") {
-          for (let modulo = 0; modulo <= 5; modulo++) {
+          for (let modulo = 1; modulo <= 5; modulo++) {
             do {
-              nota = prompt("¿que nota tienes en este modulo?");
+              nota = prompt("¿que nota tienes en el modulo " + modulo + "?");
             } while (nota > 10 || nota < 0);
-            let masmodulo = prompt("¿tienes mas modulos?");
+            let masmodulo = prompt("¿tienes mas modulos?(si,no)");
             if (masmodulo == "no") {
               break;
             }
           }
+        }
+        if (matriculado == "N") {
+        }
+        if (matriculado == "ultimo") {
+          alumno = 20;
         }
       }
     </script>
