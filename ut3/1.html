@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let ordenador = {
+        procesador: "i7",
+        ram: 12,
+        discoDuro: "1TB",
+      };
+      ordenador.SSD = "512GB";
+      ordenador["SSD"] = "512GB";
+
+      delete ordenador.discoDuro;
+      //delete ordenador[discoDuro];
+
+      for (key in ordenador) {
+        alert(ordenador[key]);
+      }
+    </script>
+  </body>
+</html>
