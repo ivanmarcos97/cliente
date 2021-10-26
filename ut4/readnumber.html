@@ -8,20 +8,18 @@
   </head>
   <body>
     <script>
-      let ordenador = {
-        procesador: "i7",
-        ram: 12,
-        discoDuro: "1TB",
-      };
-      ordenador.SSD = "512GB";
-      delete ordenador.discoDuro;
+      function readNumber() {
+        let numero;
 
-      ordenador["SSD"] = "512GB";
-      delete ordenador[discoDuro];
+        do {
+          numero = prompt("Ingrese un número: ", 0);
+        } while (!isFinite(numero));
 
-      for (key in ordenador) {
-        alert(ordenador[key]);
+        if (numero == null || numero == "") return null;
+
+        return +numero;
       }
+      alert(readNumber());
     </script>
   </body>
 </html>

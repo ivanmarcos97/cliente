@@ -8,20 +8,26 @@
   </head>
   <body>
     <script>
-      let ordenador = {
-        procesador: "i7",
-        ram: 12,
-        discoDuro: "1TB",
+      let pan = {
+        blanco: 6,
+        deAjo: 5,
+        deSemillas: {
+          deAvena: 3,
+          deLino: 6,
+        },
       };
-      ordenador.SSD = "512GB";
-      delete ordenador.discoDuro;
+      delete pan.deAjo;
+      pan.deQueso = 3;
 
-      ordenador["SSD"] = "512GB";
-      delete ordenador[discoDuro];
+      pan["sinSemillas"]["deLino"];
 
-      for (key in ordenador) {
-        alert(ordenador[key]);
-      }
+      pan.deAjo;
+
+      pan.deSemillas;
+
+      pan.deSemillas["deLino"];
+
+      pan.deQueso;
     </script>
   </body>
 </html>
