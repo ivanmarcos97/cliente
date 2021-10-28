@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function truncate(str, maxlength) {
+        return str.length > maxlength ? str.slice(0, maxlength - 1) + "…" : str;
+      }
+      alert(truncate("Hola a todos!", 5));
+      alert(truncate("Lo que me gustaría contar sobre este tema es:", 20));
+    </script>
+  </body>
+</html>

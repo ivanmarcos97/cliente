@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let styles = ["Jazz", "Blues"];
+      alert(styles.toString());
+      styles.push("Rock-n-Roll");
+      alert(styles.toString());
+      styles[Math.floor(styles.length / 2)] = "Classics";
+      alert(styles.toString());
+      styles.shift();
+      alert(styles.toString());
+      styles.unshift("Rap", "Reggae");
+      alert(styles.toString());
+    </script>
+  </body>
+</html>
