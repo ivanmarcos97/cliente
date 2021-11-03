@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Vehiculo(color, marca, modelo, velocidadMaxima){
+            this.color = color;
+            this.marca = marca;
+            this.modelo = modelo;
+            this.velocidadMaxima = velocidadMaxima;
+            this.comenzar = function(){
+                alert("Encender motor");
+            }
+            this.parar = function(){
+                alert("Apagar motor");
+            }
+            this.distanciaMax = function(horas){
+                resultado =this.velocidadMaxima*horas;
+                alert("Distancia maxima: "+ resultado);
+            }
+        }
+        let Vehiculo1 = new Vehiculo("Blanco", "kia", "ceed",180);
+        let Vehiculo2 = new Vehiculo("negro", "Ford", "mondeo",280);
+        Vehiculo1.comenzar();
+        Vehiculo1.parar();
+        Vehiculo1.distanciaMax(5);
+        Vehiculo2.comenzar();
+        Vehiculo2.parar();
+        Vehiculo1.distanciaMax(4);
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Vector(x,y){
+            this.x=x;
+            this.y=y;
+            this.longitud= ((this.x**2)+(this.y**2))**(1/2);
+            this.sumar= function(x1,y1){
+            let sumx=+this.x+x1;
+            let sumy=+this.y+y1;
+            return "{x: " +sumx+", y: "+sumy+"};";
+            }
+            this.restar= function(x1,y1){
+            let sumx=this.x-x1;
+            let sumy=this.y-y1;
+            return "{x: " +sumx+", y: "+sumy+"};";
+            }
+        }
+console.log(new Vector(1,2).sumar(2, 3)); // => {x: 3, y: 5};
+console.log(new Vector(1,2).restar(2, 3)); // => {x: -1, y: -1};
+console.log(new Vector(3, 4).longitud); // => 5
+    </script>
+</body>
+</html>
