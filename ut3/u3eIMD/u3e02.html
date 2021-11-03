@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+     function Disco() {
+  this.nombre = "";
+  this.grupo = "";
+  this.año = "";
+  this.tipo = "";
+  this.localizacion = 0;
+  this.Prestado = false;
+}
+        function Disco(nombre,grupo,año,tipo,localizacion) {
+  this.nombre = nombre;
+  this.grupo = grupo;
+  this.año = año;
+  this.tipo = tipo;
+  this.localizacion = localizacion;
+  this.Prestado = false;
+ this.cambiaest=function(pos){
+            this.localizacion=pos;
+        }
+ this.prestado = function(){
+            if(this.Prestado==true){
+                this.Prestado=false;
+            }else if(this.Prestado==false){
+                this.Prestado=true;
+            }
+        }
+this.mostrar = function(){
+alert("Nombre del disco: "+this.nombre+"\n"+"grupo del disco: "+this.grupo+"\n"+"año del disco: "+this.año+"\n"+"tipo del disco: "+this.tipo+"\n"+"localizacion disco: "+this.localizacion+"\n"+"Prestado: "+this.Prestado+"\n");
+}
+}
+
+let nombre1=prompt("Nombre del disco");
+let grupo1=prompt("grupo del disco");
+let año1=prompt("año del disco");
+let tipo1=prompt("tipo del disco:  “rock”, “pop”, “punk” o “indie”");
+let localizacion1;
+do {
+  localizacion1 = prompt("Número de estanteria: ", 0);
+} while (!isFinite(localizacion1));
+
+let disco = new Disco(nombre1,grupo1,año1,tipo1,localizacion1);
+
+do {
+      
+
+        do {
+          opcion = prompt("Elige una opcion: \n 1 mostrar informacion del disco \n 2 Cambiar de estanteria \n 3 Prestar un disco \n 4 Devolver un disco \n  0 cancelar");
+        } while (opcion > 4 || opcion < 0 || opcion == null || opcion == "");
+
+        switch (opcion) {
+          case "1":
+            disco.mostrar();
+            break;
+          case "2":
+          let localizacion2;
+            do {
+             localizacion2 = prompt("Número de estanteria: ", 0);
+            } while (!isFinite(localizacion2));
+            disco.cambiaest(localizacion2);
+            alert("Ahora esta en la estanteria: "+ disco.localizacion)
+            break;
+          case "3":
+            disco.prestado();
+            alert("El disco esta prestado: "+disco.Prestado);
+            break;
+          case "4":
+          disco.prestado();
+            alert("El disco esta prestado: "+disco.Prestado);
+            break;
+          
+          case "0":
+            alert("Ha salido con éxito");
+            break;
+        }
+      } while (opcion != 0);
+
+    </script>
+</body>
+</html>
