@@ -8,15 +8,17 @@
   </head>
   <body>
     <script>
+      function getAverageAge(users) {
+        return users.reduce((prev, user) => prev + user.age, 0) / users.length;
+      }
+
       let john = { name: "John", age: 25 };
       let pete = { name: "Pete", age: 30 };
-      let mary = { name: "Mary", age: 28 };
+      let mary = { name: "Mary", age: 29 };
 
-      let users = [john, pete, mary];
+      let arr = [john, pete, mary];
 
-      let names = users.map((item) => item.name);
-
-      alert(names);
+      alert(getAverageAge(arr)); // 28
     </script>
   </body>
 </html>

@@ -8,15 +8,13 @@
   </head>
   <body>
     <script>
-      let john = { name: "John", age: 25 };
-      let pete = { name: "Pete", age: 30 };
-      let mary = { name: "Mary", age: 28 };
+      function shuffle(array) {
+        array.sort(() => Math.random() - 0.5);
+      }
 
-      let users = [john, pete, mary];
-
-      let names = users.map((item) => item.name);
-
-      alert(names);
+      let arr = [1, 2, 3];
+      shuffle(arr);
+      alert(arr);
     </script>
   </body>
 </html>
