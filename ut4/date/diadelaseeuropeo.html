@@ -8,8 +8,18 @@
   </head>
   <body>
     <script>
-      let a = new Date(2012, 1, 20, 3, 12);
-      alert(a);
+      function getLocalDay(date) {
+        let day = date.getDay();
+
+        if (day == 0) {
+          day = 7;
+        }
+
+        return day;
+      }
+
+      let date = new Date(2012, 0, 3); // 3 Jan 2012
+      alert(getLocalDay(date));
     </script>
   </body>
 </html>
