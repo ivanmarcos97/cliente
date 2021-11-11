@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function palindromo(frase) {
+        let espalin = true;
+        let arr = frase.split(" ");
+        let frasesinesp = arr.join("");
+        let arrletras = frasesinesp.split("");
+        let arrletrasrever = arrletras.slice();
+        arrletrasrever.reverse();
+
+        for (let i = 0; i < arrletras.length; i++) {
+          if (arrletras[i] != arrletrasrever[i]) {
+            espalin = false;
+          }
+        }
+        return espalin;
+      }
+      alert(palindromo("hola"));
+      alert(palindromo("la ruta nos aporto otro paso natural"));
+    </script>
+  </body>
+</html>
