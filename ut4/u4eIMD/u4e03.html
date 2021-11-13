@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function number(num) {
+        alert(num + " Exponencial es: " + num.toExponential());
+        alert(num + " con 4 decimales es: " + num.toFixed(4));
+        alert(num + " en binario es: " + num.toString(2));
+        alert(num + " en octal es: " + num.toString(8));
+        alert(num + " en hexadecimal es: " + num.toString(16));
+      }
+
+      let numero = +prompt("Introduzca un numero", 0);
+      number(numero);
+    </script>
+  </body>
+</html>

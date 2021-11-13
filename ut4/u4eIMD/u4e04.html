@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function random(min, max) {
+        return min + Math.random() * (max - min);
+      }
+      function bonoloto() {
+        let arrnumpremiados = new Array();
+        let complementario;
+        let num;
+        let igual = false;
+        for (let i = 0; i < 6; i++) {
+          num = Math.ceil(random(0, 50));
+          for (let y = 0; y < arrnumpremiados.length; y++) {
+            if (num == arrnumpremiados[y]) {
+              igual = true;
+            }
+          }
+          if (igual == false) {
+            arrnumpremiados.push(num);
+          } else {
+            i--;
+          }
+        }
+        complementario = Math.ceil(random(0, 9));
+        arrnumpremiados.sort();
+        alert(
+          "La combinacion ganadora de la bonoloto de hoy es: " +
+            String(arrnumpremiados) +
+            " con complementario el: " +
+            complementario
+        );
+      }
+      bonoloto();
+    </script>
+  </body>
+</html>
