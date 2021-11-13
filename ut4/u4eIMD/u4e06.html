@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function cumple(dia, mes) {
+        let año = 2021;
+        let now = new Date();
+        let final = new Date(año, mes, dia);
+
+        if (now > final) {
+          final = new Date(año + 1, mes, dia);
+        }
+        let diff = final - now;
+        let añosdomingo = new Array();
+
+        alert(diff + " milisegundos quedan para tu cumpleaños");
+        alert(
+          Math.round(diff / 1000 / 60 / 60 / 24) +
+            " dias quedan para tu cumpleaños"
+        );
+        for (let i = 0; i <= 79; i++) {
+          let date = new Date(año, mes, dia);
+          if (date.getDay() == 0) {
+            añosdomingo.push(año);
+            año++;
+          } else {
+            año++;
+          }
+        }
+        alert(
+          "Los años " + String(añosdomingo) + " el cumpleaños cae en domingo "
+        );
+      }
+      let dia = +prompt("dia del cumpleaños");
+      let mes = +prompt("mes de nacimiento") - 1;
+      cumple(dia, mes);
+    </script>
+  </body>
+</html>
