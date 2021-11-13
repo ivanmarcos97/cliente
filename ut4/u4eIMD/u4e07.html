@@ -8,7 +8,7 @@
   </head>
   <body>
     <script>
-      let arr = [2, 3, 7, 4, 3, 6, 8, 5, 34, 232, 534, 213];
+      let arr = [2, 3, 7, 378, 3, 6, 8, 5, 34, 232, 134, 213];
 
       function paresfor(arr) {
         let arrpares = new Array();
@@ -46,10 +46,31 @@
         }
         alert("for of " + String(arrpares));
       }
+      function suma(arr) {
+        let sum = 0;
+        arr.forEach(function (valor) {
+          sum += valor;
+        });
+        alert("La suma de los valores del array es " + sum);
+      }
+      function cambioult(arr) {
+        alert("array inicial " + String(arr));
+        arr.pop();
+        arr.push(+prompt("Introduzca un valor "));
+        alert("array final " + String(arr));
+      }
+      function valormax(arr) {
+        arr.sort((a, b) => b - a);
+
+        alert("Valor maximo: " + arr[0]);
+      }
       paresfor(arr);
       paresforeach(arr);
       paresforin(arr);
       paresforof(arr);
+      suma(arr);
+      cambioult(arr);
+      valormax(arr);
     </script>
   </body>
 </html>
