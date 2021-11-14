@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let dado1 = 0;
+      let dado2 = 0;
+      let resultado;
+      let repeticiones = 0;
+      let map = new Map();
+      function random() {
+        return 0 + Math.random() * (6 - 0);
+      }
+      dado1 = Math.ceil(random());
+      dado2 = Math.ceil(random());
+      resultado = dado1 + dado2;
+      alert(
+        "la suma de dado 1: " +
+          dado1 +
+          " y dado 2: " +
+          dado2 +
+          " es: " +
+          resultado
+      );
+      for (let i = 0; i < 36000; i++) {
+        dado1 = Math.ceil(random());
+        dado2 = Math.ceil(random());
+        let suma = dado2 + dado1;
+        if (suma == resultado) {
+          repeticiones++;
+          map.set(0, repeticiones);
+        }
+      }
+      alert(
+        "Despues de 36.000 lanzamientos " +
+          resultado +
+          " se repite " +
+          map.get(0) +
+          " veces."
+      );
+    </script>
+  </body>
+</html>
