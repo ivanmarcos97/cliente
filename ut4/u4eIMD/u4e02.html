@@ -37,8 +37,46 @@
         let resto = dni % 23;
         return dni + letras[resto];
       }
+      function calcularNIE(nie) {
+        let dni;
+        if (nie[0] == "X") {
+          dni = "0" + nie.slice(1);
+        } else if (nie[0] == "Y") {
+          dni = "1" + nie.slice(1);
+        } else if (nie[0] == "Z") {
+          dni = "2" + nie.slice(1);
+        }
+        let letras = [
+          "T",
+          "R",
+          "W",
+          "A",
+          "G",
+          "M",
+          "Y",
+          "F",
+          "P",
+          "D",
+          "X",
+          "B",
+          "N",
+          "J",
+          "Z",
+          "S",
+          "Q",
+          "V",
+          "H",
+          "L",
+          "C",
+          "K",
+          "E",
+        ];
+        let resto = dni % 23;
+        return nie + letras[resto];
+      }
 
-      alert(calcularDNI(71303325));
+      alert(calcularDNI(56221526));
+      alert(calcularNIE("Y6478436"));
     </script>
   </body>
 </html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let numeroalum = 0;
+      let dniprueba = "";
+      let repe = "";
+      arralum = new Array();
+      function calcularDNI(dni) {
+        let letras = [
+          "T",
+          "R",
+          "W",
+          "A",
+          "G",
+          "M",
+          "Y",
+          "F",
+          "P",
+          "D",
+          "X",
+          "B",
+          "N",
+          "J",
+          "Z",
+          "S",
+          "Q",
+          "V",
+          "H",
+          "L",
+          "C",
+          "K",
+          "E",
+        ];
+        let resto = dni % 23;
+        return dni + letras[resto];
+      }
+      function Alumno(nombre, apellido1, apellido2, dni, fechana, sexo, telf) {
+        this.nombre = nombre;
+        this.apellido1 = apellido1;
+        this.apellido2 = apellido2;
+        this.dni = dni;
+        this.fechana = fechana;
+        this.sexo = sexo;
+        this.telf = telf;
+      }
+      function crearnuevoalumno() {
+        let nombre = prompt("Introduzca el nombre del nuevo alumno");
+        let apellido1 = prompt(
+          "Introduzca el primer apellido del nuevo alumno"
+        );
+        let apellido2 = prompt(
+          "Introduzca el segundo apellido del nuevo alumno"
+        );
+        let dni;
+        let repetido;
+        do {
+          dni = prompt(
+            "Introduzca el dni del nuevo alumno(Letra en mayuscula)"
+          );
+          dniprueba = calcularDNI(dni.slice(0, 8));
+          repetido=dnirepe(dni,arralum);
+        } while (repetido == true||dniprueba != dni);
+        // ||
+        let fechana = prompt(
+          "Introduzca la fecha de nacimiento del nuevo alumno (dd/mm/yy)"
+        );
+        let sexo = prompt("Introduzca el sexo del nuevo alumno");
+        let telf = prompt("Introduzca el telefono del nuevo alumno");
+        let alumnuevo = new Alumno(
+          nombre,
+          apellido1,
+          apellido2,
+          dni,
+          fechana,
+          sexo,
+          telf
+        );
+        arralum[numeroalum] = alumnuevo;
+        numeroalum++;
+      }
+      function Consultardatos(arralum) {
+        arralum.forEach(function (item, valor) {
+          alert("Alumno: " + valor);
+          for (let key in item) {
+            alert(item[key]);
+          }
+        });
+      }
+function dnirepe(dni,arralum){
+    repesi=false;
+    if(arralum.length>0){
+        for(let i=0; i<arralum.length; i++){
+        if(arralum[i].dni == dni){
+            
+            repesi= true;
+            alert("El dni esta duplicado en nuestra base de datos");
+        }
+          }
+        }
+return repesi;
+}
+function Borrar(){
+    let alumborrar=+prompt("Posicion del alumno que desea borrar");
+     alert("El Alumno con dni "+ arralum[alumborrar].dni+" ha sido borrado");
+     delete arralum[alumborrar];
+            
+           
+        }
+        function modificar(arralum){
+            let repetido;
+            let dni;
+            let nombre;
+            let apellido1;
+            let apellido2;
+            let fechana;
+            let sexo;
+            let telf;
+            let posicionmodi = prompt("Posicion del alumno que desea modificar")
+             arralum[posicionmodi][nombre] = prompt("Escribe el nuevo nombre del alumno:");
+             arralum[posicionmodi][apellido1] = prompt("Escribe el primer apellido del alumno:");
+             arralum[posicionmodi][apellido2] = prompt("Escribe el segundo apellido del alumno:");
+            
+             
+        do {
+           arralum[posicionmodi][dni] = prompt("Escribe el nuevo dni del alumno:");
+          dniprueba = calcularDNI(arralum[posicionmodi][dni].slice(0, 8));
+          repetido=dnirepe(dni,arralum);
+        } while (repetido == true||dniprueba != arralum[posicionmodi][dni]);
+
+
+             arralum[posicionmodi][fechana] = prompt("Escribe la nueva fecha de nacimiento del alumno:");
+             arralum[posicionmodi][sexo] = prompt("Escribe el nuevo sexo del alumno:");
+             arralum[posicionmodi][telf] = prompt("Escribe el nuevo telefono del alumno:");
+             return arralum;
+        }
+
+        
+
+      do {
+        do {
+          opcion = prompt(
+            "Elige una opcion: \n 1 Introducir un alumno \n 2 Consultar datos \n 3 Borrar a un alumno \n 4 Modificar Datos \n  0 cancelar"
+          );
+        } while (opcion > 4 || opcion < 0 || opcion == null || opcion == "");
+
+        switch (opcion) {
+          case "1":
+            crearnuevoalumno();
+            break;
+          case "2":
+            Consultardatos(arralum);
+            break;
+          case "3":
+           Borrar();
+            break;
+          case "4":
+          modificar(arralum);
+            break;
+
+          case "0":
+            alert("Ha salido con éxito");
+            break;
+        }
+      } while (opcion != 0);
+    </script>
+  </body>
+</html>
