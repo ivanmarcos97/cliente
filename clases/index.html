@@ -7,18 +7,11 @@
     <title>Document</title>
   </head>
   <body>
+    <script src="./Clock.js"></script>
+    <script src="./extended-clock.js"></script>
     <script>
-      class ExtendedClock extends Clock {
-        constructor(propiedades) {
-          super(propiedades);
-          this.precision = precision;
-        }
-
-        start() {
-          this.render();
-          this.timer = setInterval(() => this.render(), this.precision);
-        }
-      }
+      let extclock = new ExtendedClock("h:m:s", 1000);
+      extclock.start();
     </script>
   </body>
 </html>
