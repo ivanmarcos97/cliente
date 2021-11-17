@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      ////////////////////////////////////////////////////////
+      let arr = ["voy", "a", "casa"];
+
+      delete arr[1]; // remueve "a"
+
+      alert(arr[1]); // undefined
+
+      // ahora arr = ["voy",  , "casa"];
+      alert(arr.length); // 3
+
+      //////////////////////////////////////////////////////////////////////
+      // arr.splice(start[, deleteCount, elem1, ..., elemN]);
+      ///////////////////////////////////////////////////////////
+      let arr = ["Yo", "estudio", "JavaScript"];
+
+      arr.splice(1, 1); // desde el índice 1, remover 1 elemento
+
+      alert(arr); // ["Yo", "JavaScript"]
+      ////////////////////////////////////////////////
+      let arr = ["Yo", "estudio", "JavaScript", "ahora", "mismo"];
+
+      // remueve los primeros 3 elementos y los reemplaza con otros
+      arr.splice(0, 3, "a", "bailar");
+
+      alert(arr); // ahora ["a", "bailar", "ahora", "mismo"]
+      ////////////////////////////////////////////////////////////////
+      let arr = ["Yo", "estudio", "JavaScript"];
+
+      // desde el index 2
+      // remover 0
+      // después insertar "el", "complejo" y "language"
+      arr.splice(2, 0, "el", "complejo", "language");
+
+      alert(arr); // "Yo", "estudio","el", "complejo", "language", "JavaScript"
+      //////////////////////////////////////////////
+      let arr = [1, 2, 5];
+
+      // desde el index -1 (un lugar desde el final)
+      // remover 0 elementos,
+      // después insertar 3 y 4
+      arr.splice(-1, 0, 3, 4);
+
+      alert(arr); // 1,2,3,4,5
+    </script>
+  </body>
+</html>
