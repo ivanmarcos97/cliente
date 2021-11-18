@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function libro(isbn, titulo, autor, año) {
+        this.isbn = isbn;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.año = año;
+
+        this.toString = function () {
+          console.log("ISBN: " + this.isbn);
+          console.log("Titulo: " + this.titulo);
+          console.log("Autor: " + this.autor);
+          console.log("Año: " + this.año);
+        };
+      }
+      let libro1 = new libro("8974545", "Castellano", "Lorenzo silva", "2021");
+      libro1.toString();
+      let libro2 = new libro(
+        "8974546",
+        "La marca del meridiano",
+        "Lorenzo silva",
+        "2019"
+      );
+      libro2.toString();
+    </script>
+  </body>
+</html>

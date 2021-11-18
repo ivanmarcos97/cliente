@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Libro {
+        constructor(isbn, titulo, autor, año) {
+          this.isbn = isbn;
+          this.titulo = titulo;
+          this.autor = autor;
+          this.año = año;
+        }
+        toString() {
+          alert("ISBN: " + this.isbn+"\n"+
+          "Titulo: " + this.titulo+"\n"+
+          "Autor: " + this.autor+"\n"+
+          "Año: " + this.año +"\n"+
+          "Actual: " + this.actual);
+        }
+        get actual() {
+          let date = new Date();
+          if (this.año == date.getFullYear()) {
+            this._actual = "Si";
+          } else {
+            this._actual = "No";
+          }
+          return this._actual;
+        }
+      }
+     let arrlib=new Array();
+     let numerolib=1;
+
+      function añadirLibro() {
+        let isbn = prompt("Introduzca el isbn del nuevo libro");
+        let titulo = prompt(
+          "Introduzca el titulo del nuevo libro"
+        );
+        let autor = prompt(
+          "Introduzca el autor del nuevo libro"
+        );
+        let año= prompt(
+          "Introduzca el año del nuevo libro"
+        );
+        
+        function verdatos(arralib){
+            let mostrar;
+            let isbnb = prompt("Introduzca el isbn del  libro");
+           for(let i=0;i<arrlib.length;i++){
+                if(arrlib[i].isbn==isbnb){
+                 mostrar= arrlib[i].toString();
+                }
+            }
+            return mostrar;
+        }
+        
+        let libronuevo = new Libro(
+          isbn,
+          titulo,
+          autor,
+          año
+        );
+        arralib[numerolib] = libronuevo;
+        numerolib++;
+      }
+
+      do {
+        do {
+          opcion = prompt(
+            "Elige una opcion: \n 1 Añadir un libro \n 2 Ver datos del libro \n 3 Prestar un libro \n 4 Devolver un libro \n  5 Terminar"
+          );
+        } while (opcion > 5 || opcion < 1 || opcion == null || opcion == "");
+
+        switch (opcion) {
+          case "1":
+           añadirLibro();
+            break;
+          case "2":
+              
+            verdatos(arrlib);
+            break;
+          case "3":
+           Borrar();
+            break;
+          case "4":
+         
+            break;
+
+          case "5":
+            alert("Ha salido con éxito");
+            break;
+        }
+      } while (opcion != 0);
+    </script>
+  </body>
+</html>
+
+    </script>
+  </body>
+</html>

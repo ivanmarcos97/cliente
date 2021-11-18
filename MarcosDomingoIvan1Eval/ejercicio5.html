@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Libro {
+        constructor(isbn, titulo, autor, año) {
+          this.isbn = isbn;
+          this.titulo = titulo;
+          this.autor = autor;
+          this.año = año;
+        }
+        toString() {
+          console.log("ISBN: " + this.isbn);
+          console.log("Titulo: " + this.titulo);
+          console.log("Autor: " + this.autor);
+          console.log("Año: " + this.año);
+          console.log("Actual: " + this.actual);
+        }
+        get actual() {
+          let date = new Date();
+          if (this.año == date.getFullYear()) {
+            this._actual = "Si";
+          } else {
+            this._actual = "No";
+          }
+          return this._actual;
+        }
+      }
+
+      class LibroTexto extends Libro {
+        constructor(isbn, titulo, autor, año, estudios) {
+          super(isbn, titulo, autor, año);
+          this.estudios = estudios;
+        }
+        toString() {
+          super.toString();
+          console.log("Estudios: " + this.estudios);
+        }
+      }
+
+      let libroTexto = new LibroTexto(
+        "1111",
+        "Formacion y orientacion laboral",
+        "Jose carlos gonzalez acedo",
+        "2021",
+        "ciclos"
+      );
+      libroTexto.toString();
+    </script>
+  </body>
+</html>

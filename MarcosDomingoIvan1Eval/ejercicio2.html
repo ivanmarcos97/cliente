@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function primerdia(año) {
+        let dia;
+        let mes;
+        let dat = new Date();
+        if (año == undefined) {
+          año = dat.getFullYear() + 1;
+        }
+        for (let i = 0; i < 12; i++) {
+          let fecha = new Date(año, i, 1);
+          let days = [
+            "domingo",
+            "lunes",
+            "martes",
+            "miercoles",
+            "jueves",
+            "viernes",
+            "sabado",
+          ];
+          mes = fecha.getMonth();
+          dia = days[fecha.getDay()];
+          console.log(
+            "El 1 del mes " +
+              (mes + 1) +
+              " del año " +
+              fecha.getFullYear() +
+              " cae en " +
+              dia
+          );
+        }
+      }
+      primerdia();
+    </script>
+  </body>
+</html>
