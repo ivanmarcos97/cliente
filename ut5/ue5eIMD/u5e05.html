@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Vehiculo {
+        constructor(color, marca, modelo, velocidadMaxima) {
+          this.color = color;
+          this.marca = marca;
+          this.modelo = modelo;
+          this.velocidadMaxima = velocidadMaxima;
+        }
+        comenzar() {
+          alert("Encender motor");
+        }
+        parar() {
+          alert("Apagar motor");
+        }
+        distanciaMax(horas) {
+          let resultado = this.velocidadMaxima * horas;
+          alert("Distancia maxima: " + resultado);
+        }
+      }
+      class Coche extends Vehiculo {
+        constructor(color, marca, modelo, velocidadMaxima) {
+          super(color, marca, modelo);
+          this.velocidadMaxima = 120;
+        }
+        parar() {
+          alert("Aparcar");
+        }
+      }
+      class Avion extends Vehiculo {
+        constructor(color, marca, modelo, velocidadMaxima) {
+          super(color, marca, modelo);
+          this.velocidadMaxima = 1000;
+        }
+        parar() {
+          alert("Aterrizar");
+        }
+        comenzar() {
+          alert("Despegar");
+        }
+      }
+
+      let Vehiculo1 = new Vehiculo("Blanco", "kia", "ceed", 180);
+      let coche1 = new Coche("negro", "Ford", "mondeo");
+      let avion1 = new Avion("rojo", "iberia", "Airbus");
+      Vehiculo1.comenzar();
+      Vehiculo1.parar();
+      Vehiculo1.distanciaMax(5);
+      Vehiculo1.distanciaMax(4);
+      coche1.comenzar();
+      coche1.parar();
+      coche1.distanciaMax(5);
+      coche1.distanciaMax(4);
+      avion1.comenzar();
+      avion1.parar();
+      avion1.distanciaMax(5);
+      avion1.distanciaMax(4);
+    </script>
+  </body>
+</html>
