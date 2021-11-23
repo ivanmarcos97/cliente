@@ -8,15 +8,15 @@
   </head>
   <body>
     <script>
-      function primerdia(año) {
+      function primerdia(anno) {
         let dia;
         let mes;
         let dat = new Date();
-        if (año == undefined) {
-          año = dat.getFullYear() + 1;
+        if (anno == undefined) {
+          anno = dat.getFullYear() + 1;
         }
         for (let i = 0; i < 12; i++) {
-          let fecha = new Date(año, i, 1);
+          let fecha = new Date(anno, i, 1);
           let days = [
             "domingo",
             "lunes",

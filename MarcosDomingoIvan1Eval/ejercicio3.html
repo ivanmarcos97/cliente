@@ -8,17 +8,17 @@
   </head>
   <body>
     <script>
-      function libro(isbn, titulo, autor, año) {
+      function libro(isbn, titulo, autor, anno) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;
-        this.año = año;
+        this.anno = anno;
 
         this.toString = function () {
           console.log("ISBN: " + this.isbn);
           console.log("Titulo: " + this.titulo);
           console.log("Autor: " + this.autor);
-          console.log("Año: " + this.año);
+          console.log("Año: " + this.anno);
         };
       }
       let libro1 = new libro("8974545", "Castellano", "Lorenzo silva", "2021");
