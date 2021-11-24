@@ -16,11 +16,22 @@
           this.año = año;
         }
         toString() {
-          alert("ISBN: " + this.isbn+"\n"+
-          "Titulo: " + this.titulo+"\n"+
-          "Autor: " + this.autor+"\n"+
-          "Año: " + this.año +"\n"+
-          "Actual: " + this.actual);
+          alert(
+            "ISBN: " +
+              this.isbn +
+              "\n" +
+              "Titulo: " +
+              this.titulo +
+              "\n" +
+              "Autor: " +
+              this.autor +
+              "\n" +
+              "Año: " +
+              this.año +
+              "\n" +
+              "Actual: " +
+              this.actual
+          );
         }
         get actual() {
           let date = new Date();
@@ -32,62 +43,101 @@
           return this._actual;
         }
       }
-    
-   let arrlib=new Array();
 
-      function añadirLibro(arralib) { 
-        
+      let arrlib = new Array();
+      let prestados = new Array();
+
+      function añadirLibro() {
         let isbn = prompt("Introduzca el isbn del nuevo libro");
-        let titulo = prompt(
-          "Introduzca el titulo del nuevo libro"
-        );
-        let autor = prompt(
-          "Introduzca el autor del nuevo libro"
-        );
-        let año= prompt(
-          "Introduzca el año del nuevo libro"
-        );
-          let libronuevo = new Libro(
-          isbn,
-          titulo,
-          autor,
-          año
-        );
-        arralib.push(libronuevo);
+        let titulo = prompt("Introduzca el titulo del nuevo libro");
+        let autor = prompt("Introduzca el autor del nuevo libro");
+        let año = prompt("Introduzca el año del nuevo libro");
+        let libronuevo = new Libro(isbn, titulo, autor, año);
+        arrlib.push(libronuevo);
       }
-        function verdatos(arralib){
-            let mostrar;
-            let isbnb = prompt("Introduzca el isbn del  libro");
-           for(let i=0;i<arrlib.length;i++){
-                if(arrlib[i].isbn==isbnb){
-                 mostrar= arrlib[i].toString();
-                }
+      function verdatos() {
+        let mostrar;
+        let encontrado = false;
+        let isbnb = prompt("Introduzca el isbn del  libro");
+        if (encontrado == false) {
+          arrlib.forEach((libro) => {
+            if (libro.isbn == isbnb) {
+              mostrar = libro.toString();
+              encontrado = true;
             }
-            return mostrar;
+          });
         }
-        
-      
+        if (encontrado == false) {
+          prestados.forEach((libro) => {
+            if (libro.isbn == isbnb) {
+              alert("El libro esta en prestados y es: ");
+              mostrar = libro.toString();
+              encontrado = true;
+            }
+          });
+        }
+        if (encontrado == false) {
+          alert("ERROR BUSQUEDA. No existe un libro con el ISBN indicado.");
+        }
+        return mostrar;
+      }
+      function prestar() {
+        let isbnb = prompt("Introduzca el isbn del  libro a prestar");
+        for (let i = 0; i < arrlib.length; i++) {
+          if (arrlib[i].isbn == isbnb) {
+            if (i != -1) {
+              let confirmacion = prompt("¿Esta seguro?(si,no)", "");
+              if (confirmacion.toUpperCase() == "SI") {
+                prestados.push(arrlib[i]);
+                arrlib.splice(i, 1);
+              } else {
+                alert("La Operacion prestar libro se ha cancelado.");
+              }
+            } else {
+              alert("ERROR PRESTADO. No existe un libro con el ISBN indicado.");
+            }
+          }
+        }
+      }
+
+      function devolver() {
+        let isbnb = prompt("Introduzca el isbn del  libro a devolver");
+        for (let i = 0; i < prestados.length; i++) {
+          if (prestados[i].isbn == isbnb) {
+            if (i != -1) {
+              let confirmacion = prompt("¿Esta seguro?(si,no)", "");
+              if (confirmacion.toUpperCase() == "SI") {
+                arrlib.push(prestados[i]);
+                prestados.splice(i, 1);
+              } else {
+                alert("La Operacion devolver libro se ha cancelado.");
+              }
+            } else {
+              alert("ERROR DEVOLVER No existe un libro con el ISBN indicado.");
+            }
+          }
+        }
+      }
 
       do {
         do {
           opcion = prompt(
-            "Elige una opcion: \n 1 Añadir un libro \n 2 Ver datos del libro \n 3 Prestar un libro \n 4 Devolver un libro \n  5 Terminar"
+            "Elige una opcion: \n 1 Añadir un libro \n 2 Ver datos del libro \n 3 Prestar un libro \n 4 Devolver un libro \n 5 Terminar"
           );
         } while (opcion > 5 || opcion < 1 || opcion == null || opcion == "");
 
         switch (opcion) {
           case "1":
-           añadirLibro(arrlib);
+            añadirLibro();
             break;
           case "2":
-              
-            verdatos(arrlib);
+            verdatos();
             break;
           case "3":
-           Borrar();
+            prestar();
             break;
           case "4":
-         
+            devolver();
             break;
 
           case "5":
@@ -95,10 +145,6 @@
             break;
         }
       } while (opcion != 5);
-    </script>
-  </body>
-</html>
-
     </script>
   </body>
 </html>
