@@ -32,10 +32,11 @@
           return this._actual;
         }
       }
-     let arrlib=new Array();
-     let numerolib=1;
+    
+   let arrlib=new Array();
 
-      function añadirLibro() {
+      function añadirLibro(arralib) { 
+        
         let isbn = prompt("Introduzca el isbn del nuevo libro");
         let titulo = prompt(
           "Introduzca el titulo del nuevo libro"
@@ -46,7 +47,14 @@
         let año= prompt(
           "Introduzca el año del nuevo libro"
         );
-        
+          let libronuevo = new Libro(
+          isbn,
+          titulo,
+          autor,
+          año
+        );
+        arralib.push(libronuevo);
+      }
         function verdatos(arralib){
             let mostrar;
             let isbnb = prompt("Introduzca el isbn del  libro");
@@ -58,15 +66,7 @@
             return mostrar;
         }
         
-        let libronuevo = new Libro(
-          isbn,
-          titulo,
-          autor,
-          año
-        );
-        arralib[numerolib] = libronuevo;
-        numerolib++;
-      }
+      
 
       do {
         do {
@@ -77,7 +77,7 @@
 
         switch (opcion) {
           case "1":
-           añadirLibro();
+           añadirLibro(arrlib);
             break;
           case "2":
               
@@ -94,7 +94,7 @@
             alert("Ha salido con éxito");
             break;
         }
-      } while (opcion != 0);
+      } while (opcion != 5);
     </script>
   </body>
 </html>
