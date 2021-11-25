@@ -15,10 +15,11 @@
         let arrnumpremiados = new Array();
         let complementario;
         let num;
-        let igual = false;
-        for (let i = 0; i < 6; i++) {
+
+        for (i = 0; i < 6; i++) {
+          let igual = false;
           num = Math.ceil(random(0, 50));
-          for (let y = 0; y < arrnumpremiados.length; y++) {
+          for (y = 0; y < arrnumpremiados.length; y++) {
             if (num == arrnumpremiados[y]) {
               igual = true;
             }
