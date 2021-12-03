@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+
+      td,
+      th {
+        border: 1px solid black;
+        padding: 3px;
+        text-align: center;
+      }
+
+      th {
+        font-weight: bold;
+        background-color: #e6e6e6;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="calendar"></div>
+
+    <script>
+      function getLocalDay(date) {
+        let day = date.getDay();
+
+        if (day == 0) {
+          day = 7;
+        }
+
+        return day;
+      }
+      function getLastDayOfMonth(year, month) {
+        let date = new Date(year, month + 1, 1);
+        date.setDate(date.getDate() - 1);
+        return date.getDate();
+      }
+
+      function createCalendar(elem, year, month) {
+        let mes = month - 1;
+        let fecha = new Date(year, mes);
+
+        let table =
+          "<table><tr><th>MO</th><th>TU</th><th>WE</th><th>TH</th><th>FR</th><th>SA</th><th>SU</th></tr><tr>";
+        for (let i = 0; i < getLocalDay(fecha); i++) {
+          table += "<td></td>";
+        }
+        for (let i = 0; i < getLastDayOfMonth(year, mes); i++) {
+          table += "<td>" + i + "</td>";
+        }
+
+        table += "</tr></table>";
+        calendar.innerHTML = table;
+      }
+
+      createCalendar(calendar, 2012, 9);
+    </script>
+  </body>
+</html>
