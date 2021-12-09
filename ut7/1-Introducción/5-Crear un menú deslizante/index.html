@@ -16,7 +16,17 @@
     font-size: 80%;
     color: green;
   }
-
+  .ocultar .title::before {
+    content: '▼ ';
+    font-size: 80%;
+    color: green;
+  }
+  .ocultar ul {
+    margin: 0;
+    list-style: none;
+    padding-left: 20px;
+    display: block;
+  }
 
 </style>
 </head>
@@ -34,7 +44,12 @@
 </div>
 
 <script>
-  // Cuando se hace click sobre l campo con class ="title", se le asigna/quita una nueva clase al div
+  // Cuando se hace click sobre el campo con class ="title", se le asigna/quita una nueva clase al div
+  let spano=document.querySelector("span");
+  spano.onclick=function(){
+    sweeties.classList.toggle('ocultar') ;
+  }
+ 
   // Define esa nueva clase en el css
   // ayuda:  content: '▼ ';
 
