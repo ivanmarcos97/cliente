@@ -6,17 +6,17 @@
 
   <body>
     <p>
-      Así:
-      <input
-        type="button"
-        id="hider"
-        value="Haz click para desaparecer el texto"
-        onclick="this.hidden=true"
-      />
+      Así: <input type="button" id="hider" value="Haz click para desaparecer el
+      texto" //onclick="this.hidden=true" />
     </p>
 
     <script>
       /* Tu código */
+      function ocultar() {
+        this.hidden = true;
+      }
+
+      hider.addEventListener("click", ocultar);
     </script>
   </body>
 </html>
