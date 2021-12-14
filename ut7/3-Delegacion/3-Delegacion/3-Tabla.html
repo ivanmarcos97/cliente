@@ -54,30 +54,40 @@
 
     <script>
       /***********************
-         * Requierimientos:
-            * Haz que la tabla se pueda ordenar: los clics en elementos <th> deberían ordenarla por la columna correspondiente.
-            * Cada <th> tiene su tipo de datos en el atributo: data-type="number"; data-typ="string"
-            * La función de ordenación debe manejar el orden de acuerdo al tipo de datos.
-            * Sólo los tipos "string" y "number" deben ser soportados
-         * Algoritmo
-            * Asocia el manejador de eventos a la tabla
-            * Sólo se debe tener en cuenta si el evento.target es el th (elemento.tagName)
-            * Habrá que tener en cuenta el tipo de dato para ordenar la tabla
-            * Hay que tener en cuenta la posición del th sobre el que se ha hecho clic: pos= th.cellIndex
-            *
-            * Función de ordenación:
-                * Selecciona todas las filas dentro del tbody (tbody.rows)
-                * Conviérte las filas a un array (Array.from)
-                * Crea una función de comparación para ordenar con array.sort(funcionComparacion)
-                * funcion ordenar (filaA, filaB) {
-                       if (filaA.cells[pos].innerHTML > filaB.cells[pos].innerHTML )
-                           return 1;
-                       else
-                           return -1
-                     }
-                * Añade el array ordenado al tbody con tbody.append(...arrayOrdenado)
-         * ************************/
+            * Requierimientos:
+               * Haz que la tabla se pueda ordenar: los clics en elementos <th> deberían ordenarla por la columna correspondiente.
+               * Cada <th> tiene su tipo de datos en el atributo: data-type="number"; data-typ="string"
+               * La función de ordenación debe manejar el orden de acuerdo al tipo de datos.
+               * Sólo los tipos "string" y "number" deben ser soportados
+            * Algoritmo
+               * Asocia el manejador de eventos a la tabla
+               * Sólo se debe tener en cuenta si el evento.target es el th (elemento.tagName)
+               * Habrá que tener en cuenta el tipo de dato para ordenar la tabla
+               * Hay que tener en cuenta la posición del th sobre el que se ha hecho clic: pos= th.cellIndex
+               *
+               * Función de ordenación:
+                   * Selecciona todas las filas dentro del tbody (tbody.rows)
+                   * Conviérte las filas a un array (Array.from)
+                   * Crea una función de comparación para ordenar con array.sort(funcionComparacion)
+                   * funcion ordenar (filaA, filaB) {
+                          if (filaA.cells[pos].innerHTML > filaB.cells[pos].innerHTML )
+                              return 1;
+                          else
+                              return -1
+                        }
+                   * Añade el array ordenado al tbody con tbody.append(...arrayOrdenado)
+            * ************************/
       // ...your code...
+
+      grid.addEventListener("click", ocultar);
+      function ocultar(evento) {
+        let target = evento.target;
+        if (target.tagName != "TH") {
+          return;
+        }
+        let posicion = target.tagName;
+        alert(posicion.cellIndex);
+      }
     </script>
   </body>
 </html>
