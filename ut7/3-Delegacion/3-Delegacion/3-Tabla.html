@@ -85,8 +85,29 @@
         if (target.tagName != "TH") {
           return;
         }
-        let posicion = target.tagName;
-        alert(posicion.cellIndex);
+        let th = target;
+        let posicion = th.cellIndex;
+        let filas = grid.getElementsByTagName("TBODY")[0].rows;
+        let tbody = grid.getElementsByTagName("TBODY")[0];
+        let arrayFilas = Array.from(filas);
+        let arrayOrdenado = arrayFilas.sort(ordenar);
+        //tipo de las variables del array
+
+        tbody.append(...arrayOrdenado);
+
+        function ordenar(filaA, filaB) {
+          if (th.dataset.type == "string") {
+            if (
+              filaA.cells[posicion].innerHTML > filaB.cells[posicion].innerHTML
+            )
+              return 1;
+            else return -1;
+          } else if (
+            +filaA.cells[posicion].innerHTML > filaB.cells[posicion].innerHTML
+          )
+            return 1;
+          else return -1;
+        }
       }
     </script>
   </body>
