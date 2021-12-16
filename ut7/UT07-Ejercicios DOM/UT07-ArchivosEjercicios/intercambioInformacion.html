@@ -1,34 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Unidad 5 - Ejercicio 3</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <form action="#" id="origen">
-        <p>
-            Seleccione un producto:<br>
-            <select id="productos" size="1">
-                <option value="">Productos</option>
-                <option value="Patatas">Patatas</option>
-                <option value="Judías">Judias</option>
-                <option value="Acelgas">Acelgas</option>
-                <option value="Tomates">Tomates</option>
-                <option value="Melocotones">Melocotones</option>
-                <option value="Manzanas">Manzanas</option>
-            </select>
-            <input type="button" id="mueve" value="Añadir">
-        </p>
+      <p>
+        Seleccione un producto:<br />
+        <select id="productos" size="1">
+          <option value="">Productos</option>
+          <option value="Patatas">Patatas</option>
+          <option value="Judías">Judias</option>
+          <option value="Acelgas">Acelgas</option>
+          <option value="Tomates">Tomates</option>
+          <option value="Melocotones">Melocotones</option>
+          <option value="Manzanas">Manzanas</option>
+        </select>
+        <input type="button" id="mueve" value="Añadir" />
+      </p>
     </form>
     <form action="#" id="destino">
-        <p>
-            Elementos añadidos:<br>
-            <textarea cols="20" rows="8" name="cajaItems"></textarea>
-        </p>
+      <p>
+        Elementos añadidos:<br />
+        <textarea cols="20" rows="8" name="cajaItems"></textarea>
+      </p>
     </form>
-</body>
+    <script>
+      let boton = document.getElementById("mueve");
+      boton.addEventListener("click", mover);
+      function mover(evento) {
+        //seleccionar el select
+        let selectpro = document.getElementById("productos");
+        //obtener el indice del option seleccionado
+        let indice = selectpro.selectedIndex;
 
+        //obtener el value del option seleccionado
+        let valor = selectpro.options[indice].value;
+
+        let textarea = document.querySelector("textarea");
+        textarea.innerHTML += valor + ",";
+      }
+    </script>
+  </body>
 </html>
