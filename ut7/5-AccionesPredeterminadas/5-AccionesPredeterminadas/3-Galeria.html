@@ -45,6 +45,16 @@
     </ul>
     <script>
       // Tu código aquí
+
+      let contenedor = document.getElementById("thumbs");
+      contenedor.addEventListener("click", imagenes);
+      function imagenes(event) {
+        let enlace = event.target.closest("a");
+        if (!enlace) return;
+        event.preventDefault();
+        let img = document.getElementById("largeImg");
+        img.src = enlace.href;
+      }
     </script>
   </body>
 </html>
