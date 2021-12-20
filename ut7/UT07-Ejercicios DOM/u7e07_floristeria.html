@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        font-size: 20px;
+        font-weight: bold;
+        background-color: #f1fdfa;
+
+        color: #000000;
+        font-family: “Trebuchet MS”, Arial;
+        text-align: left;
+
+        width: 100%;
+      }
+      table td {
+        padding: 20px;
+        border-right-width: 1px;
+        border-bottom-width: 1px;
+        border-right-style: solid;
+        border-bottom-style: solid;
+        border-right-color: #1100ff;
+        border-bottom-color: #1100ff;
+      }
+      table th {
+        background-image: url(fondo_tr02a.png);
+        background-position: left top;
+        font-size: 40px;
+        font-weight: bold;
+        background-color: #acecff;
+        background-repeat: repeat-x;
+        color: #008299;
+        font-family: “Trebuchet MS”, Arial;
+        text-align: left;
+        border-right-width: 1px;
+        border-bottom-width: 1px;
+        border-right-style: solid;
+        border-bottom-style: solid;
+        border-right-color: #1100ff;
+        border-bottom-color: #1100ff;
+        padding: 10px;
+      }
+      form {
+        display: flex;
+        justify-content: space-evenly;
+      }
+      input {
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="tabla">
+      <tr>
+        <th>Nombre</th>
+        <th>Ubicacion</th>
+        <th>Ejemplares</th>
+        <th>Flor</th>
+      </tr>
+    </table>
+    <form id="plantas">
+      <input type="button" id="nueva" value="Generar planta" />
+      <input type="button" id="bfila" value="Borrar fila" />
+      <input type="button" id="nfilas" value="Mostrar numero de filas" />
+    </form>
+    <script>
+      let tabla = document.getElementById("tabla");
+      let bGenerar = document.getElementById("nueva");
+      bGenerar.addEventListener("click", nueva);
+      function nueva(evento) {
+        let nombre = prompt("Nombre de la nueva planta");
+        let ubicacion = prompt("Ubicacion de la nueva planta");
+        let ejemp = prompt("Ejemplares de de nueva planta");
+        let flor = prompt("Flor de la nueva planta");
+        let arr = [nombre, ubicacion, ejemp, flor];
+
+        let tr = document.createElement("tr");
+        for (let i = 0; i < arr.length; i++) {
+          let td = document.createElement("td");
+          td.innerHTML = arr[i];
+          tr.append(td);
+        }
+        tabla.append(tr);
+      }
+
+      let bBorrar = document.getElementById("bfila");
+      bBorrar.addEventListener("click", borrar);
+      function borrar(evento) {
+        tabla.lastChild.remove();
+      }
+
+      let bMostrar = document.getElementById("nfilas");
+      bMostrar.addEventListener("click", mostrar);
+      function mostrar(evento) {
+        let nf = document.querySelectorAll("tr").length;
+        let numero = nf - 1;
+        alert("La tabla tiene  " + numero + "  filas");
+      }
+    </script>
+  </body>
+</html>
