@@ -1,25 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Unidad 5 - Ejercicio 4</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <form id="formu" action="#">
-        <select id="ccaa">
-            <option value="0" selected="selected">Seleccione...</option>
-            <option value="1">Castilla y León</option>
-            <option value="2">Comunidad Madrid</option>
-            <option value="3">Galicia</option>
-            <option value="4">País Vasco</option>
-        </select>
-        <select id="provincia">
-            <option value="-">-</option>
-        </select>
+      <select id="ccaa">
+        <option value="0" selected="selected">Seleccione...</option>
+        <option value="1">Castilla y León</option>
+        <option value="2">Comunidad Madrid</option>
+        <option value="3">Galicia</option>
+        <option value="4">País Vasco</option>
+      </select>
+      <select id="provincia">
+        <option value="-">-</option>
+      </select>
     </form>
-</body>
+    <script>
+      let cambio = document.getElementById("ccaa");
 
+      cambio.addEventListener("change", cambiar);
+      function cambiar(evento) {
+        //obtener el indice del option seleccionado
+
+        let indice = cambio.selectedIndex;
+
+        //obtener el value del option seleccionado
+        let valor = cambio.options[indice].value;
+
+        let segundoselect = document.getElementById("provincia");
+
+        let cyl =
+          "<option value=0>Burgos</option><option value=1>soria</option> <option value=2>Segovia</option><option value=3>Avila</option><option value=4>Valladolid</option><option value=5>Palencia</option><option value=6>Leon</option><option value=7>Zamora</option><option value=8>Salamanca</option>";
+        let Madrid = "<option value=1>Madrid</option>";
+        let galicia =
+          "<option value=1>A coruña</option><option value=2>Lugo</option><option value=3>ourense</option><option value=4>Pontevedra</option>";
+        let paisvas =
+          "<option value=1> Álava </option><option value=2>Guipúzcoa </option><option value=3> Vizcaya</option>";
+        switch (valor) {
+          case "1":
+            segundoselect.innerHTML = cyl;
+            break;
+
+          case "2":
+            segundoselect.innerHTML = Madrid;
+            break;
+          case "3":
+            segundoselect.innerHTML = galicia;
+            break;
+          case "4":
+            segundoselect.innerHTML = paisvas;
+            break;
+        }
+      }
+    </script>
+  </body>
 </html>
