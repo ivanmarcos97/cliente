@@ -78,6 +78,13 @@
         ];
       let penultenlc = numa.getAttribute("href");
 
+      let numenlacespru = 0;
+      for (enlace of a) {
+        if (enlace.href == "http://prueba/") {
+          numenlacespru++;
+        }
+      }
+
       let p1 = document.querySelectorAll("p")[0];
       let nenlcp1 = p1.querySelectorAll("a").length;
 
@@ -98,6 +105,7 @@
         penultenlc +
         "<br/>" +
         "El número de enlaces que apuntan a http://prueba: " +
+        numenlacespru +
         "<br/>" +
         "El número de enlaces del primer párrafo: " +
         nenlaces +

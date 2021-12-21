@@ -54,6 +54,11 @@
     </style>
   </head>
   <body>
+    <form id="plantas">
+      <input type="button" id="nueva" value="Generar planta" />
+      <input type="button" id="bfila" value="Borrar fila" />
+      <input type="button" id="nfilas" value="Mostrar numero de filas" />
+    </form>
     <table id="tabla">
       <tr>
         <th>Nombre</th>
@@ -62,11 +67,7 @@
         <th>Flor</th>
       </tr>
     </table>
-    <form id="plantas">
-      <input type="button" id="nueva" value="Generar planta" />
-      <input type="button" id="bfila" value="Borrar fila" />
-      <input type="button" id="nfilas" value="Mostrar numero de filas" />
-    </form>
+
     <script>
       let tabla = document.getElementById("tabla");
       let bGenerar = document.getElementById("nueva");
@@ -90,7 +91,11 @@
       let bBorrar = document.getElementById("bfila");
       bBorrar.addEventListener("click", borrar);
       function borrar(evento) {
-        tabla.lastChild.remove();
+        let numtr = tabla.querySelectorAll("tr").length;
+        if (numtr > 1) {
+          let utr = numtr - 1;
+          tabla.querySelectorAll("tr")[utr].remove();
+        }
       }
 
       let bMostrar = document.getElementById("nfilas");

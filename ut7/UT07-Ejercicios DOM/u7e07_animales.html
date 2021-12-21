@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="animales">
+      <input type="button" id="nueva" value="Generar personaje" />
+      <input type="button" id="bfila" value="Borrar personaje" />
+      <input type="button" id="nperros" value="Mostrar numero de perros" />
+      <input type="button" id="ngatos" value="Mostrar numero de gatos" />
+      <input type="button" id="nhurones" value="Mostrar numero de hurones" />
+    </form>
+
+    <script>
+      let bGenerar = document.getElementById("nueva");
+      let contenedor = document.querySelector("body");
+      bGenerar.addEventListener("click", nueva);
+      function nueva(evento) {
+        let newimg = document.createElement("img");
+
+        do {
+          opcion = prompt("Elige animal: \n 1. Perro, 2. Gato, 3. Hurón.");
+        } while (opcion > 3 || opcion < 1 || opcion == null || opcion == "");
+
+        switch (opcion) {
+          case "1":
+            newimg.src = "imgAnimales/perro.jpg";
+            newimg.classList.add("perro");
+            contenedor.append(newimg);
+            break;
+          case "2":
+            newimg.src = "imgAnimales/gato.jpg";
+            newimg.classList.add("gato");
+            contenedor.append(newimg);
+            break;
+          case "3":
+            newimg.src = "imgAnimales/huron.jpg";
+            newimg.classList.add("huron");
+            contenedor.append(newimg);
+
+            break;
+        }
+      }
+
+      let bBorrar = document.getElementById("bfila");
+      bBorrar.addEventListener("click", borrar);
+      function borrar(evento) {
+        let img = contenedor.querySelectorAll("img").length;
+
+        let uimg = img - 1;
+        contenedor.querySelectorAll("img")[uimg].remove();
+      }
+
+      let bMostrarperro = document.getElementById("nperros");
+      bMostrarperro.addEventListener("click", mostrarperros);
+      function mostrarperros(evento) {
+        let imgperro = contenedor.getElementsByClassName("perro").length;
+        let ulimgperro = imgperro;
+        alert("Hay  " + ulimgperro + "  perros");
+      }
+
+      let bMostrargatos = document.getElementById("ngatos");
+      bMostrargatos.addEventListener("click", mostrargatos);
+      function mostrargatos(evento) {
+        let imggato = contenedor.getElementsByClassName("gato").length;
+        let ulimggato = imggato;
+        alert("Hay  " + ulimggato + "  gatos");
+      }
+      let bMostrarhurones = document.getElementById("nhurones");
+      bMostrarhurones.addEventListener("click", mostrarhurones);
+      function mostrarhurones(evento) {
+        let imghuron = contenedor.getElementsByClassName("huron").length;
+        let ulimghuron = imghuron;
+        alert("Hay  " + ulimghuron + "  hurones");
+      }
+    </script>
+  </body>
+</html>
