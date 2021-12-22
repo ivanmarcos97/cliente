@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora eventos W3C y bubbling</title>
+    <script type="text/javascript">
+      //Este ejemplo muestra como capturar eventos delegados ("bubbling") en document
+      //Esta forma es mucho más concisa, más elegante y eficaz
+      //evento del manejador: ev => {.....} contiene el elemento HTML sobre el que se clicó en la propiedad target
+      //Atributos id o class se utilizan para filtrar eventos con el método matches(..) antes de invocar manejadores
+
+      document.addEventListener("click", (ev) => {
+        if (ev.target.matches("#n1")) vaciar();
+        else if (ev.target.matches("#b1")) cuadrado();
+      });
+      document.addEventListener("click", (ev) => {
+        if (ev.target.matches("#n1")) vaciar();
+        else if (ev.target.matches("#x3")) cubo();
+      });
+      document.addEventListener("click", (ev) => {
+        if (ev.target.matches("#n1")) vaciar();
+        else if (ev.target.matches("#b1x")) uno();
+      });
+
+      function vaciar() {
+        document.getElementById("n1").value = "";
+      }
+
+      function cuadrado() {
+        let num = document.getElementById("n1");
+        num.value = num.value * num.value;
+        let inf = document.getElementById("informacion");
+        inf.innerHTML =
+          "Información: el resultado de la operación x2 es: " + num.value;
+      }
+      function cubo() {
+        let num = document.getElementById("n1");
+        num.value = num.value * num.value * num.value;
+        let inf = document.getElementById("informacion");
+        inf.innerHTML =
+          "Información: el resultado de la operación x3 es: " + num.value;
+      }
+      function uno() {
+        let num = document.getElementById("n1");
+        num.value = 1 / num.value;
+        let inf = document.getElementById("informacion");
+        inf.innerHTML =
+          "Información: el resultado de la operación 1/x es: " + num.value;
+      }
+    </script>
+  </head>
+
+  <body>
+    Número:
+    <input type="text" id="n1" />
+    <button id="b1">x<sup>2</sup></button>
+    <button id="x3">x<sup>3</sup></button>
+    <button id="b1x">1/x</button>
+
+    <h3 id="informacion">Información sobre el número:</h3>
+  </body>
+</html>
