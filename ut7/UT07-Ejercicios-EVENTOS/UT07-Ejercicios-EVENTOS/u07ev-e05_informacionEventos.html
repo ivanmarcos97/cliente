@@ -1,40 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UT04 - Ejercicio 5 - Eventos teclado y ratón</title>
 
     <style>
-        body {
-            font-family: arial, helvetica;
-        }
+      body {
+        font-family: arial, helvetica;
+      }
 
-        .box {
-            width: 160px;
-            height: 160px;
-            border: thin solid silver;
-            padding: .5em;
-            float: left;
-            margin-right: 15px;
-        }
+      .box {
+        width: 160px;
+        height: 160px;
+        border: thin solid silver;
+        padding: 0.5em;
+        float: left;
+        margin-right: 15px;
+      }
 
-        .box h1 {
-            margin: 0;
-        }
+      .box h1 {
+        margin: 0;
+      }
+      .ama {
+        background-color: #ffffcc;
+      }
+      .blue {
+        background-color: #cce6ff;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="raton" class="box">
-        <h1>Ratón</h1>
-        <div id="datosRaton"></div>
+      <h1>Ratón</h1>
+      <div id="datosRaton"></div>
     </div>
     <div id="teclado" class="box">
-        <h1>Teclado</h1>
-        <div id="datosTeclado"></div>
+      <h1>Teclado</h1>
+      <div id="datosTeclado"></div>
     </div>
-</body>
-
+    <script>
+      window.addEventListener("mousemove", movimiento);
+      function movimiento() {
+        let ama = document.getElementById("raton");
+        let xCliente = event.clientX;
+        let yCliente = event.clientY;
+        let xScreen = event.screenX;
+        let yScreen = event.screenY;
+        let posicionCliente = "Navegador[" + xCliente + "," + yCliente + "]";
+        let posicionScreen = "Pantalla[" + xScreen + "," + yScreen + "]";
+        let destino = document.getElementById("datosRaton");
+        destino.innerHTML = posicionCliente + "<br>" + posicionScreen;
+        ama.classList.add("ama");
+      }
+      window.addEventListener("keydown", pulsacion);
+      function pulsacion() {
+        let blue = document.getElementById("teclado");
+        let valor = event.key;
+        let codigo = event.code;
+        let mensajeValor = "Carácter[" + valor + "]";
+        let mensajeCodigo = "Código[" + codigo + "]";
+        let destino = document.getElementById("datosTeclado");
+        destino.innerHTML = mensajeValor + "<br>" + mensajeCodigo;
+        blue.classList.add("blue");
+      }
+    </script>
+  </body>
 </html>
