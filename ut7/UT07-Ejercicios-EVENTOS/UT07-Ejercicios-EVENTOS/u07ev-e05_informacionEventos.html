@@ -41,28 +41,28 @@
       <div id="datosTeclado"></div>
     </div>
     <script>
-      window.addEventListener("mousemove", movimiento);
-      function movimiento() {
+      window.addEventListener("mousemove", posraton);
+      function posraton() {
         let ama = document.getElementById("raton");
-        let xCliente = event.clientX;
-        let yCliente = event.clientY;
+        let xClient = event.clientX;
+        let yClient = event.clientY;
         let xScreen = event.screenX;
         let yScreen = event.screenY;
-        let posicionCliente = "Navegador[" + xCliente + "," + yCliente + "]";
+        let posicionCliente = "Navegador[" + xClient + "," + yClient + "]";
         let posicionScreen = "Pantalla[" + xScreen + "," + yScreen + "]";
         let destino = document.getElementById("datosRaton");
         destino.innerHTML = posicionCliente + "<br>" + posicionScreen;
         ama.classList.add("ama");
       }
-      window.addEventListener("keydown", pulsacion);
-      function pulsacion() {
+      window.addEventListener("keydown", tecteclado);
+      function tecteclado() {
         let blue = document.getElementById("teclado");
-        let valor = event.key;
-        let codigo = event.code;
-        let mensajeValor = "Carácter[" + valor + "]";
-        let mensajeCodigo = "Código[" + codigo + "]";
+        let key = event.key;
+        let code = event.code;
+        let mensajekey = "Carácter[" + key + "]";
+        let mensajeCode = "Código[" + code + "]";
         let destino = document.getElementById("datosTeclado");
-        destino.innerHTML = mensajeValor + "<br>" + mensajeCodigo;
+        destino.innerHTML = mensajekey + "<br>" + mensajeCode;
         blue.classList.add("blue");
       }
     </script>
