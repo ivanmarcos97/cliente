@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      .selected {
+        background: #0f0;
+      }
+
+      li {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    Haz click en un elemento de la lista para seleccionarlo.
+    <br />
+
+    <ul id="ul">
+      <li>Christopher Robin</li>
+      <li>Winnie-the-Pooh</li>
+      <li>Tigger</li>
+      <li>Kanga</li>
+      <li>Rabbit. Just rabbit.</li>
+    </ul>
+
+    <script>
+      let lista = document.querySelectorAll("li");
+      for (li of lista) {
+        li.addEventListener("click", seleccionar);
+      }
+
+      function seleccionar() {
+        if (event.ctrlKey || event.metaKey) {
+          event.target.classList.add("selected");
+        } else {
+          for (li of lista) {
+            li.classList.remove("selected");
+          }
+          event.target.classList.add("selected");
+        }
+      }
+    </script>
+  </body>
+</html>
