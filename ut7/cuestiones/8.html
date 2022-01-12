@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Eventos y validación de formularios</title>
+  </head>
+  <body>
+    <section>
+      <h3 id="titulo">Hola</h3>
+      <a href="http://www.google.es">Google</a>
+    </section>
+  </body>
+  <script>
+    let a = document.querySelector("a");
+    a.addEventListener("click", noir);
+    function noir() {
+      let confirmar = confirm("¿quieres ir al enlace?");
+      if (confirmar == false) {
+        event.preventDefault();
+      }
+    }
+  </script>
+</html>
