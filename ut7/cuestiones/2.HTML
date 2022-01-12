@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Eventos y validación de formularios</title>
+  </head>
+  <body>
+    <section>
+      <h3 id="titulo">Hola</h3>
+      <a href="http://www.google.es">Google</a>
+    </section>
+  </body>
+  <script>
+    let titulo = document.getElementById("titulo");
+    titulo.addEventListener("click", ponerAdios);
+    function ponerAdios() {
+      titulo.innerHTML = "Adios";
+    }
+  </script>
+</html>
