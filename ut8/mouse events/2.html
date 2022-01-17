@@ -74,14 +74,34 @@
 
     <script>
       // ...tu código...
-      let exterior = document.getElementById("house");
-      exterior.onmouseover = function (event) {
-        let target = event.target;
-        target.style.background = "pink";
+      let tooltipElemen;
+      document.onmouseover = function (event) {
+        let target = event.target.closest("[data-tooltip]");
+        if (target.dataset.tooltip) {
+          tooltipElemen = document.createElement("div");
+          tooltipElemen.className = "tooltip";
+          tooltipElemen.innerHTML = target.dataset.tooltip;
+          document.body.append(tooltipElemen);
+
+          let coords = target.getBoundingClientRect();
+          let left =
+            coords.left + (target.offsetWidth - tooltipElemen.offsetWidth) / 2;
+          if (left < 0) left = 0; // don't cross the left window edge
+          let top = coords.top - tooltipElemen.offsetHeight - 5;
+          if (top < 0) {
+            // if crossing the top window edge, show below instead
+            top = coords.top + target.offsetHeight + 5;
+          }
+          tooltipElemen.style.left = left + "px";
+          tooltipElemen.style.top = top + "px";
+        }
       };
-      exterior.onmouseout = function (event) {
-        let target = event.target;
-        target.style.background = "";
+
+      document.onmouseout = function (event) {
+        if (tooltipElemen) {
+          tooltipElemen.remove();
+          tooltipElemen = null;
+        }
       };
     </script>
   </body>

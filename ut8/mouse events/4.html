@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      pressed = new Set();
+      function runOnKeys(func, ...array) {
+        document.onkeydown = function () {
+          pressed.add(event.code);
+          let estantodos = true;
+          for (tecla of array) {
+            if (!pressed.has(tecla)) {
+              estantodos = false;
+            }
+          }
+          if (estantodos == true) {
+            pressed.clear();
+            func();
+          }
+        };
+        document.onkeyup = function () {
+          pressed.delete(event.code);
+        };
+      }
+
+      runOnKeys(() => alert("¡Hola!"), "KeyQ", "KeyW");
+    </script>
+  </body>
+</html>
