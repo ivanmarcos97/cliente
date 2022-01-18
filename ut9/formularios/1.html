@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <select id="genres">
+      <option value="rock">Rock</option>
+      <option value="blues" selected>Blues</option>
+    </select>
+    <script>
+      //1
+      let generos = document.getElementById("genres");
+
+      alert(generos.value);
+      //2
+      let option = new Option("Classic", "classic");
+      generos.append(option);
+      //3
+      option.selected = true;
+    </script>
+  </body>
+</html>
