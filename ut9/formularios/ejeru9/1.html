@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validación de formularios JS básica</title>
+    <style>
+      input {
+        border: 1px solid #333;
+      }
+      input:focus {
+        box-shadow: none;
+      }
+      input.error {
+        box-shadow: 0 0 5px 1px red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Formulario</h1>
+    <form action="" method="post" id="miFormulario">
+      <p>
+        <label for="nombre">Nombre del disco:</label>
+        <input type="text" name="nombre" id="nombre" />
+      </p>
+      <p>
+        <label for="grupo">Grupo de musica o cantante:</label>
+        <input type="text" name="grupo" id="grupo" />
+      </p>
+      <p>
+        <label for="año">Año de publicacion:</label>
+
+        <input type="text" name="ano" id="ano" size="4" />
+      </p>
+      <p>
+        <label for="Tipo">Tipo de musica:</label>
+        <input type="text" name="tipo" id="tipo" />
+      </p>
+      <p>
+        <label for="localizacion">Localizacion:</label>
+        <input type="text" name="loc" id="loc" />
+      </p>
+      <p>
+        <label for="Prestado">Prestado:</label>
+        <input type="text" name="pres" id="pres" />
+      </p>
+      <p>
+        <button type="submit" id="enviar">Enviar</button>
+        <button type="reset" id="borrar">Borrar</button>
+      </p>
+    </form>
+  </body>
+</html>
+<script>
+  let f = document.forms.miformulario;
+  f[0].addEventListener("change", validarname);
+  function validarname() {
+    if (/[\w{20}]/.test(f[0].value)) {
+      return false;
+    }
+  }
+</script>
