@@ -54,10 +54,13 @@
 </html>
 <script>
   let f = document.forms.miformulario;
-  f[0].addEventListener("change", validarname);
+  let nombre = f[0].value;
+  nombre.addEventListener("change", validarname);
   function validarname() {
-    if (/[\w{20}]/.test(f[0].value)) {
-      return false;
+    if (nombre == null || nombre.length == 0 || /[\w{20}]/.test(nombre)) {
+      nombre.setCustomValidity("¡Maximo de 20 caracteres!");
+    } else {
+      nombre.setCustomValidity("");
     }
   }
 </script>
