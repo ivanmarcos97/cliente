@@ -34,8 +34,13 @@
         <input type="text" name="ano" id="ano" size="4" />
       </p>
       <p>
-        <label for="Tipo">Tipo de musica:</label>
-        <input type="text" name="tipo" id="tipo" />
+        <label for="tipo">Tipo de musica:</label>
+        <select name="tipo" id="tipo">
+          <option value="rock">Rock</option>
+          <option value="pop">Pop</option>
+          <option value="punk">Punk</option>
+          <option value="indie">Indie</option>
+        </select>
       </p>
       <p>
         <label for="localizacion">Localizacion:</label>
@@ -53,14 +58,56 @@
   </body>
 </html>
 <script>
-  let f = document.forms.miformulario;
-  let nombre = f[0].value;
-  nombre.addEventListener("change", validarname);
-  function validarname() {
-    if (nombre == null || nombre.length == 0 || /[\w{20}]/.test(nombre)) {
-      nombre.setCustomValidity("¡Maximo de 20 caracteres!");
+  let f = document.forms.miFormulario;
+  let nombre = f.elements.nombre;
+  let grupo = f.elements.grupo;
+  let ano = f.elements.ano;
+  let tipo = f.elements.tipo;
+  let loc = f.elements.loc;
+  let pres = f.elements.pres;
+  nombre.addEventListener("change", campo20);
+  grupo.addEventListener("change", campo20);
+  ano.addEventListener("change", validarano);
+  tipo.addEventListener("change", validartipo);
+  loc.addEventListener("change", validarloc);
+  pres.addEventListener("change", validarpres);
+
+  function campo20() {
+    if (/^[\w]{1,20}$/.test(event.target.value)) {
+      alert("bien");
     } else {
-      nombre.setCustomValidity("");
+      event.target.value = "";
+      let span = document.createElement("span");
+      span.innerHTML = "Error";
+      let p = event.target.closest("p");
+      p.append(span);
+    }
+  }
+
+  function validarano() {
+    if (/^[0-9]{4}$/.test(event.target.value)) {
+      alert("bien");
+    } else {
+      event.target.value = "";
+      let span = document.createElement("span");
+      span.innerHTML = "Error";
+      let p = event.target.closest("p");
+      p.append(span);
+    }
+  }
+  function validartipo() {
+    if (/[\w{1,20}]/.test(nombre)) {
+    } else {
+    }
+  }
+  function validarloc() {
+    if (/[\w{1,20}]/.test(nombre)) {
+    } else {
+    }
+  }
+  function validarpres() {
+    if (/[\w{1,20}]/.test(nombre)) {
+    } else {
     }
   }
 </script>
