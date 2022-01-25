@@ -23,15 +23,18 @@
       <p>
         <label for="nombre">Nombre del disco:</label>
         <input type="text" name="nombre" id="nombre" />
+        <span id="errordisco" style="color: red"></span>
       </p>
       <p>
         <label for="grupo">Grupo de musica o cantante:</label>
         <input type="text" name="grupo" id="grupo" />
+        <span id="errorgrupo" style="color: red"></span>
       </p>
       <p>
         <label for="año">Año de publicacion:</label>
 
         <input type="text" name="ano" id="ano" size="4" />
+        <span id="errorano" style="color: red"></span>
       </p>
       <p>
         <label for="tipo">Tipo de musica:</label>
@@ -45,6 +48,7 @@
       <p>
         <label for="localizacion">Localizacion:</label>
         <input type="text" name="loc" id="loc" />
+        <span id="errorloc" style="color: red"></span>
       </p>
       <p>
         <label for="Prestado">Prestado:</label>
@@ -58,56 +62,58 @@
   </body>
 </html>
 <script>
-  let f = document.forms.miFormulario;
-  let nombre = f.elements.nombre;
-  let grupo = f.elements.grupo;
-  let ano = f.elements.ano;
-  let tipo = f.elements.tipo;
-  let loc = f.elements.loc;
-  let pres = f.elements.pres;
-  nombre.addEventListener("change", campo20);
-  grupo.addEventListener("change", campo20);
-  ano.addEventListener("change", validarano);
-  tipo.addEventListener("change", validartipo);
-  loc.addEventListener("change", validarloc);
-  pres.addEventListener("change", validarpres);
+  document.addEventListener("DOMContentLoaded", programa);
 
-  function campo20() {
-    if (/^[\w]{1,20}$/.test(event.target.value)) {
-      alert("bien");
-    } else {
-      event.target.value = "";
-      let span = document.createElement("span");
-      span.innerHTML = "Error";
-      let p = event.target.closest("p");
-      p.append(span);
-    }
-  }
+  function programa() {
+    let f = document.forms.miFormulario;
+    let nombre = f.elements.nombre;
+    let grupo = f.elements.grupo;
+    let ano = f.elements.ano;
+    let loc = f.elements.loc;
 
-  function validarano() {
-    if (/^[0-9]{4}$/.test(event.target.value)) {
-      alert("bien");
-    } else {
-      event.target.value = "";
-      let span = document.createElement("span");
-      span.innerHTML = "Error";
-      let p = event.target.closest("p");
-      p.append(span);
+    nombre.addEventListener("change", campo20);
+    grupo.addEventListener("change", campo20);
+    ano.addEventListener("change", validarano);
+    loc.addEventListener("change", validarloc);
+
+    function campo20() {
+      if (/^[\w]{1,20}$/.test(event.target.value)) {
+        if (event.target.id == "nombre") {
+          nombre.classList.remove("error");
+        }
+        if (event.target.id == "grupo") {
+          grupo.classList.remove("error");
+        } else {
+          if (event.target.id == "nombre") {
+            event.target.value = "";
+            let errordisco = document.getElementById("errordisco");
+            errordisco.innerHTML = "Error";
+            nombre.classList.add("error");
+          }
+          if (event.target.id == "grupo") {
+            event.target.value = "";
+            let errorgrupo = document.getElementById("errorgrupo");
+            errorgrupo.innerHTML = "Error";
+            grupo.classList.add("error");
+          }
+        }
+      }
     }
-  }
-  function validartipo() {
-    if (/[\w{1,20}]/.test(nombre)) {
-    } else {
+
+    function validarano() {
+      if (/^[0-9]{4}$/.test(event.target.value)) {
+        alert("bien");
+      } else {
+        event.target.value = "";
+        let errorano = document.getElementById("errorano");
+        ano.classList.add("error");
+      }
     }
-  }
-  function validarloc() {
-    if (/[\w{1,20}]/.test(nombre)) {
-    } else {
-    }
-  }
-  function validarpres() {
-    if (/[\w{1,20}]/.test(nombre)) {
-    } else {
+
+    function validarloc() {
+      if (/[\d]*$]/.test(nombre)) {
+      } else {
+      }
     }
   }
 </script>
