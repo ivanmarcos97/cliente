@@ -52,7 +52,7 @@
       </p>
       <p>
         <label for="Prestado">Prestado:</label>
-        <input type="text" name="pres" id="pres" />
+        <input type="checkbox" name="pres" id="pres" />
       </p>
       <p>
         <button type="submit" id="enviar">Enviar</button>
@@ -80,39 +80,49 @@
       if (/^[\w]{1,20}$/.test(event.target.value)) {
         if (event.target.id == "nombre") {
           nombre.classList.remove("error");
+          errordisco.innerHTML = "";
         }
         if (event.target.id == "grupo") {
           grupo.classList.remove("error");
-        } else {
-          if (event.target.id == "nombre") {
-            event.target.value = "";
-            let errordisco = document.getElementById("errordisco");
-            errordisco.innerHTML = "Error";
-            nombre.classList.add("error");
-          }
-          if (event.target.id == "grupo") {
-            event.target.value = "";
-            let errorgrupo = document.getElementById("errorgrupo");
-            errorgrupo.innerHTML = "Error";
-            grupo.classList.add("error");
-          }
+          errorgrupo.innerHTML = "";
+        }
+      } else {
+        if (event.target.id == "nombre") {
+          event.target.value = "";
+          let errordisco = document.getElementById("errordisco");
+          errordisco.innerHTML = "Error";
+          nombre.classList.add("error");
+        }
+        if (event.target.id == "grupo") {
+          event.target.value = "";
+          let errorgrupo = document.getElementById("errorgrupo");
+          errorgrupo.innerHTML = "Error";
+          grupo.classList.add("error");
         }
       }
     }
 
     function validarano() {
       if (/^[0-9]{4}$/.test(event.target.value)) {
-        alert("bien");
+        ano.classList.remove("error");
+        errorano.innerHTML = "";
       } else {
         event.target.value = "";
         let errorano = document.getElementById("errorano");
+        errorano.innerHTML = "Error";
         ano.classList.add("error");
       }
     }
 
     function validarloc() {
-      if (/[\d]*$]/.test(nombre)) {
+      if (/^\d*$/.test(event.target.value)) {
+        loc.classList.remove("error");
+        errorloc.innerHTML = "";
       } else {
+        event.target.value = "";
+        let errorloc = document.getElementById("errorloc");
+        errorloc.innerHTML = "Error";
+        loc.classList.add("error");
       }
     }
   }
