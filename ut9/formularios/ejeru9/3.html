@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      input {
+        border: 1px solid #333;
+      }
+      input:focus {
+        box-shadow: none;
+      }
+      input.error {
+        box-shadow: 0 0 5px 1px red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Breaking Bad</h1>
+    <form action="" method="post" id="miFormulario">
+      <p>
+        <label for="fecha">Fecha de creación:</label>
+        <input type="text" name="fecha" id="fecha" />
+        <span id="errorfecha" style="color: red"></span>
+      </p>
+      <p>
+        <label for="cocinero">Cocinero:</label>
+        <input type="text" name="cocinero" id="cocinero" />
+        <span id="errorcoci" style="color: red"></span>
+      </p>
+      <p>
+        <label for="año">Destinatario:</label>
+
+        <input type="text" name="desti" id="desti" size="4" />
+        <span id="errordesti" style="color: red"></span>
+      </p>
+      <p>
+        <label for="gramos">Gramos:</label>
+
+        <input type="text" name="gramos" id="gramos" size="4" />
+        <span id="errorgramos" style="color: red"></span>
+      </p>
+      <p>
+        <label for="compo">Composición:</label>
+        <input type="text" name="compo" id="compo" />
+        <span id="errorcompo" style="color: red"></span>
+      </p>
+      <p>
+        <label for="numcuenta">Numero de cuenta:</label>
+        <input type="text" name="numcuenta" id="numcuenta" />
+        <span id="errornumcuenta" style="color: red"></span>
+      </p>
+      <p>
+        <button type="submit" id="enviar">Enviar</button>
+        <button type="reset" id="borrar">Borrar</button>
+      </p>
+    </form>
+    <script>
+      document.addEventListener("DOMContentLoaded", programa);
+
+      function programa() {
+        let f = document.forms.miFormulario;
+        let fecha = f.elements.fecha;
+
+        fecha.addEventListener("change", fechavalida);
+
+        function fechavalida() {
+          if (
+            /^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/.test(
+              event.target.value
+            )
+          ) {
+            fecha.classList.remove("error");
+            errorfecha.innerHTML = "";
+          } else {
+            event.target.value = "";
+            let errorfecha = document.getElementById("errorfecha");
+            errorfecha.innerHTML = "Error";
+            fecha.classList.add("error");
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
