@@ -31,7 +31,7 @@
         <span id="errorcoci" style="color: red"></span>
       </p>
       <p>
-        <label for="año">Destinatario:</label>
+        <label for="desti">Destinatario:</label>
 
         <input type="text" name="desti" id="desti" size="4" />
         <span id="errordesti" style="color: red"></span>
@@ -65,6 +65,11 @@
         let fecha = f.elements.fecha;
 
         fecha.addEventListener("change", fechavalida);
+        cocinero.addEventListener("change", cocinerovalido);
+        desti.addEventListener("change", destivalido);
+        gramos.addEventListener("change", gramosvalido);
+        compo.addEventListener("change", compovalido);
+        numcuenta.addEventListener("change", numcuentavalido);
 
         function fechavalida() {
           if (
@@ -79,6 +84,82 @@
             let errorfecha = document.getElementById("errorfecha");
             errorfecha.innerHTML = "Error";
             fecha.classList.add("error");
+          }
+        }
+        
+        function cocinerovalido() {
+          if (
+            /^[A-Z]{2}\W[0-9]{4}$/.test(
+              event.target.value
+            )
+          ) {
+            cocinero.classList.remove("error");
+            errorcoci.innerHTML = "";
+          } else {
+            event.target.value = "";
+            let errorcoci = document.getElementById("errorcoci");
+            errorcoci.innerHTML = "Error";
+            cocinero.classList.add("error");
+          }
+        }
+        function destivalido() {
+          if (
+            /^[A-Z]{2,3}_[a-z]{1,}:[0-9]{4}$/.test(
+              event.target.value
+            )
+          ) {
+            desti.classList.remove("error");
+            errordesti.innerHTML = "";
+          } else {
+            event.target.value = "";
+            let errordesti = document.getElementById("errordesti");
+            errordesti.innerHTML = "Error";
+            desti.classList.add("error");
+          }
+        }
+        function gramosvalido() {
+          if (
+            /^[1-5][0-9]{3}$|^[1-9][0-9]{2}$/.test(
+              event.target.value
+            )
+          ) {
+            gramos.classList.remove("error");
+            errorgramos.innerHTML = "";
+          } else {
+            event.target.value = "";
+            let errorgramos = document.getElementById("errorgramos");
+            errorgramos.innerHTML = "Error";
+            gramos.classList.add("error");
+          }
+        }
+        function compovalido() {
+          if (
+            /^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/.test(
+              event.target.value
+            )
+          ) {
+            compo.classList.remove("error");
+            errorcompo.innerHTML = "";
+          } else {
+            event.target.value = "";
+            let errorcompo = document.getElementById("errorcompo");
+            errorcompo.innerHTML = "Error";
+            compo.classList.add("error");
+          }
+        }
+        function numcuentavalido() {
+          if (
+            /^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/.test(
+              event.target.value
+            )
+          ) {
+            numcuenta.classList.remove("error");
+            errornumcuenta.innerHTML = "";
+          } else {
+            event.target.value = "";
+            let errornumcuenta = document.getElementById("errornumcuenta");
+            errornumcuenta.innerHTML = "Error";
+            numcuenta.classList.add("error");
           }
         }
       }
