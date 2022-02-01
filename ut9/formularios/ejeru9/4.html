@@ -63,6 +63,7 @@ font-size: 3em;}
                     <input id="quinta3" type="radio" name="quinta" value="Animales" /><label  for="quinta3">Animales</label><span class="correcto" id="15"></span><br/>
           </fieldset>
           <input id="fin" type="submit" value="Enviar" /><br/>
+          <input id="reiniciar" type="button" value="reiniciar intentos" /><br/>
           <textarea class="oculto" name="resultado" id="resultado" cols="130" rows="10"></textarea>
         </form>
 
@@ -226,13 +227,35 @@ function programa() {
                 textarea.innerHTML=puntos+"/5";
                 textarea.classList.add("incorrectof");
                 textarea.classList.remove("correctof");
+        
+                let contador = document.cookie.split('=');
+                if (contador[0] != "") {
+                 contador[1]++;
+                 document.cookie = "contador" + "=" + contador[1] ;
+                 textarea.innerHTML+="    Nº de intentos: "+contador[1];
+                } else {
+                 let contador=0;
+                 contador++;
+                document.cookie = "contador" + "=" + contador ;
+                textarea.innerHTML+="    Nº de intentos: "+contador;
+                
+          }
                 
             }
         }
+        f.reiniciar.addEventListener("click",reiniciar);
+
+function reiniciar(){
+    contador=0;
+    textarea.innerHTML=puntos+"/5";
+    textarea.innerHTML+="    Nº de intentos: "+contador;
+    document.cookie = "contador" + "=" + contador ;
+}
+        let contador;
         vacio();
            if( vaciosi==true){
-
-           }else{
+            
+         }else{
              recuento();  
            }   
     }
