@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>.oculto{display: none;}
+     label.error {
+        box-shadow: 0 0 5px 1px red;
+      }
+      .correcto{color: green;}
+      .correctof {background-color: green;
+    color: black;font-size: 3em;}
+      .incorrecto{color:red;}
+      .incorrectof {background-color: red;
+    color: black;
+font-size: 3em;}
+      </style>
+</head>
+<body>
+    <body>
+        <form action="" method="post" id="test">
+          <fieldset>
+            <p>¡¡Contesta bien a las 5 preguntas Sobre El Juego Del Calamar para ganar!!</p>
+          
+                <label id="primera"> 1- En cuantos capitulos está dividida la serie:</label><br/>
+               
+                    <input id="primera1" type="radio" name="primera" value="6"  /><label  for="primera1">6</label><span class="incorrecto" id="1"></span>
+                    <br/>
+                    <input id="primera2" type="radio" name="primera" value="8" /><label  for="primera2">8</label><span class="incorrecto" id="2"></span><br/>
+                    <input id="primera3" type="radio" name="primera" value="9" /><label  for="primera3">9</label><span class="correcto" id="3"></span ><br/>
+
+                 
+                    <label id="segunda">2- Como se llama el protagonista de la serie:</label><br/>
+               
+                    <input id="segunda1" type="radio" name="segunda" value="Sin Gu-kong"/><label   for="segunda1">Sin Gu-kong</label><span class="incorrecto" id="4"></span><br/>
+                    <input   id="segunda2" type="radio" name="segunda" value="Seong Gi-hun"/><label  for="segunda2">Seong Gi-hun</label><span class="correcto" id="5"></span><br/>
+                    <input   id="segunda3" type="radio" name="segunda" value="Hun le-see"/><label  for="segunda3">Hun le-see</label><span class="incorrecto" id="6"></span><br/>
+
+
+                    <label id="tercera">3- Cuantos jugadores llegan a la prueba de la pasarela de cristal?</label><br/>
+               
+                    <input id="tercera1" type="radio" name="tercera" value="14" /><label  for="tercera1">14</label><span  class="incorrecto" id="7"></span>
+                    <br/>
+                    <input id="tercera2" type="radio" name="tercera" value="16" /><label  for="tercera2">16</label><span class="correcto" id="8"></span><br/>
+                    <input id="tercera3" type="radio" name="tercera" value="18" /><label  for="tercera3">18</label><span class="incorrecto" id="9"></span><br/>
+
+
+                    <label id="cuarta">4- A que conocido juego se enfrentan en una de las pruebas:</label><br/>
+               
+                    <input id="cuarta1" type="radio" name="cuarta" value="Canicas" /><label  for="cuarta1">Canicas</label><span class="correcto" id="10"></span>
+                    <br/>
+                    <input id="cuarta2" type="radio" name="cuarta" value="Parchís" /><label  for="cuarta2">Parchís</label><span class="incorrecto" id="11"></span><br/>
+                    <input id="cuarta3" type="radio" name="cuarta" value="Poker" /><label  for="cuarta3">Poker</label><span class="incorrecto" id="12"></span><br/>
+
+
+                    <label id="quinta">5- De que llevan máscaras los Vips:</label><br/>
+               
+                    <input id="quinta1" type="radio" name="quinta" value="Mujeres" /><label  for="quinta1">Mujeres</label><span class="incorrecto" id="13"></span>
+                    <br/>
+                    <input id="quinta2" type="radio" name="quinta" value="Calamar" /><label  for="quinta2">Calamar</label><span class="incorrecto" id="14"></span><br/>
+                    <input id="quinta3" type="radio" name="quinta" value="Animales" /><label  for="quinta3">Animales</label><span class="correcto" id="15"></span><br/>
+          </fieldset>
+          <input id="fin" type="submit" value="Enviar" /><br/>
+          <input id="reiniciar" type="button" value="reiniciar intentos" /><br/>
+          <textarea class="oculto" name="resultado" id="resultado" cols="130" rows="10"></textarea>
+        </form>
+
+        <script>
+             document.addEventListener("DOMContentLoaded", programa);
+
+function programa() {
+            let f=document.forms.test;
+  
+
+            f.fin.addEventListener("click",comprobar);
+
+            function comprobar(){
+                event.preventDefault();
+                let primera=f.primera;
+            let segunda=f.segunda;
+            let tercera=f.tercera;
+            let cuarta=f.cuarta;
+            let quinta=f.quinta;
+            let textarea=f.resultado;
+            let pri=document.getElementById("primera");
+            let seg=document.getElementById("segunda");
+            let ter=document.getElementById("tercera");
+            let cua=document.getElementById("cuarta");
+            let qui=document.getElementById("quinta");
+            let puntos=0;
+            let vaciosi=false;
+
+            function vacio(){
+                if(primera.value==""){
+                   pri.classList.add("error");
+                   vaciosi=true;
+                }else{
+                    pri.classList.remove("error");
+                }
+                if(segunda.value==""){
+                    seg.classList.add("error")
+                    vaciosi=true;
+                }else{
+                    seg.classList.remove("error");
+                }
+                if(tercera.value==""){
+                    ter.classList.add("error")
+                    vaciosi=true;
+                }else{
+                    ter.classList.remove("error");
+                }
+                if(cuarta.value==""){
+                    cua.classList.add("error")
+                    vaciosi=true;
+                }else{
+                    cua.classList.remove("error");
+                }
+                if(quinta.value==""){
+                    qui.classList.add("error")
+                    vaciosi=true;
+                }else{
+                    qui.classList.remove("error");
+                }
+
+
+            }
+            function recuento(){
+                if(primera.value=="9"){
+                    puntos++;
+                    document.getElementById("3").innerHTML=" ✔";
+                    document.getElementById("1").innerHTML="";
+                    document.getElementById("2").innerHTML="";
+                }else{
+                    
+                    if(primera.value=="6"){
+                        document.getElementById("1").innerHTML=" X";
+                        document.getElementById("2").innerHTML="";
+                        document.getElementById("3").innerHTML="";
+                    }
+                    if(primera.value=="8"){
+                        document.getElementById("2").innerHTML=" X";
+                        document.getElementById("1").innerHTML="";
+                        document.getElementById("3").innerHTML="";
+                    }
+                }
+                if(segunda.value=="Seong Gi-hun"){
+                    puntos++;
+                    document.getElementById("5").innerHTML=" ✔";
+                    document.getElementById("4").innerHTML="";
+                    document.getElementById("6").innerHTML="";
+                }else{
+                   
+                    if(segunda.value=="Sin Gu-kong"){
+                        document.getElementById("4").innerHTML=" X";
+                        document.getElementById("6").innerHTML="";
+                        document.getElementById("5").innerHTML="";
+                    }
+                    if(segunda.value=="Hun le-see"){
+                        document.getElementById("6").innerHTML=" X";
+                        document.getElementById("4").innerHTML="";
+                        document.getElementById("5").innerHTML="";
+                    }
+                }
+                if(tercera.value=="16"){
+                    puntos++;
+                    document.getElementById("8").innerHTML="✔";
+                    document.getElementById("7").innerHTML="";
+                    document.getElementById("9").innerHTML="";
+                }else{
+                   
+                    if(tercera.value=="14"){
+                        document.getElementById("7").innerHTML=" X";
+                        document.getElementById("9").innerHTML="";
+                        document.getElementById("8").innerHTML="";
+                    }
+                    if(tercera.value=="18"){
+                        document.getElementById("9").innerHTML=" X";
+                        document.getElementById("7").innerHTML="";
+                        document.getElementById("8").innerHTML="";
+                    }
+                }
+                if(cuarta.value=="Canicas"){
+                    puntos++;
+                    document.getElementById("10").innerHTML=" ✔";
+                    document.getElementById("11").innerHTML="";
+                    document.getElementById("12").innerHTML="";
+                }else{
+                   
+                    if(cuarta.value=="Parchís"){
+                        document.getElementById("11").innerHTML=" X";
+                        document.getElementById("12").innerHTML="";
+                        document.getElementById("10").innerHTML="";
+                    }
+                    if(cuarta.value=="Poker"){
+                        document.getElementById("12").innerHTML=" X";
+                        document.getElementById("11").innerHTML="";
+                        document.getElementById("10").innerHTML="";
+                    }
+                }
+                if(quinta.value=="Animales"){
+                    puntos++;
+                    document.getElementById("15").innerHTML="✔";
+                    document.getElementById("14").innerHTML="";
+                    document.getElementById("13").innerHTML="";
+                }else{
+                    
+                    if(quinta.value=="Mujeres"){
+                        document.getElementById("13").innerHTML=" X";
+                        document.getElementById("14").innerHTML="";
+                        document.getElementById("15").innerHTML="";
+                    }
+                    if(quinta.value=="Calamar"){
+                        document.getElementById("14").innerHTML=" X";
+                        document.getElementById("13").innerHTML="";
+                        document.getElementById("15").innerHTML="";
+                    }
+                }
+            if(puntos==5){
+                textarea.classList.remove("oculto");
+                textarea.innerHTML="5/5"+" HAS HECHO PLENO, ENHORABUENA!!!!!!";
+                textarea.classList.add("correctof");
+                textarea.classList.remove("incorrectof");
+            } else{
+                textarea.classList.remove("oculto");
+                textarea.innerHTML=puntos+"/5";
+                textarea.classList.add("incorrectof");
+                textarea.classList.remove("correctof");
+               
+                
+                let contador = localStorage.getItem('contador');
+                
+                 contador++;
+                 localStorage.setItem('contador', contador);  
+                 textarea.innerHTML+="    Nº de intentos: "+contador;
+                
+                
+            }
+        }
+        f.reiniciar.addEventListener("click",reiniciar);
+
+function reiniciar(){
+    contador=0;
+    textarea.innerHTML=puntos+"/5";
+    textarea.innerHTML+="    Nº de intentos: "+contador;
+    localStorage.setItem('contador', contador); 
+}
+        let contador;
+        vacio();
+           if( vaciosi==true){
+            
+         }else{
+             recuento();  
+           }   
+    }
+}
+        </script>
+</body>
+</html>
