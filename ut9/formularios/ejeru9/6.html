@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      input {
+        border: 1px solid #333;
+      }
+      input:focus {
+        box-shadow: none;
+      }
+      input.error {
+        box-shadow: 0 0 5px 1px red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Reserva Online</h1>
+    <form action="" method="post" id="reservas">
+      <p>
+        <label for="nombre">Nombre y apellidos:</label>
+        <input type="text" name="nombre" id="nombre" />
+        <span id="errornombre" style="color: red"></span>
+      </p>
+      <p>
+        <label for="dni">Dni:</label>
+        <input type="text" name="dni" id="dni" />
+        <span id="errordni" style="color: red"></span>
+      </p>
+      <p>
+        <label for="npersonas">Numero de personas:</label>
+
+        <input type="text" name="npersonas" id="npersonas" />
+        <span id="errornpersonas" style="color: red"></span>
+      </p>
+      <p>
+        <label id="cocina"> Sala con cocina:</label><br />
+        <span id="errorcocina" style="color: red"></span>
+
+        <input id="concoci" type="radio" name="cocina" value="con" /><label
+          for="concoci"
+          >Con cocina</label
+        >
+        <br />
+        <input id="sincoci" type="radio" name="cocina" value="sin" /><label
+          for="sincoci"
+          >Sin cocina</label
+        >
+      </p>
+      <p>
+        <label for="nsocio">Numero de socio:</label>
+        <input type="text" name="nsocio" id="nsocio" />
+        <span id="errornsocio" style="color: red"></span>
+      </p>
+      <p>
+        <button type="submit" id="reservar">Reservar</button>
+        <button type="submit" id="anular">Anular</button>
+        <button type="submit" id="mostrar">Mostrar</button>
+        <button type="submit" id="salir">Salir</button>
+      </p>
+    </form>
+    <script>
+      class Datos {
+        constructor(nombre, dni, npersonas, cocina, nsocio = "") {
+          this.nombre = nombre;
+          this.dni = dni;
+          this.npersonas = npersonas;
+          this.cocina = cocina;
+          this.nsocio = nsocio;
+        }
+      }
+      document.addEventListener("DOMContentLoaded", programa);
+      function programa() {
+        let f = document.forms.reservas;
+
+        f.nombre.addEventListener("change", nombrevalido);
+        f.dni.addEventListener("change", dnivalido);
+        f.npersonas.addEventListener("change", npersonasvalido);
+        f.cocina.addEventListener("change", cocinavalido);
+
+        f.reservar.addEventListener("click", reservar);
+        f.anular.addEventListener("click", anular);
+        f.mostrar.addEventListener("click", mostrar);
+        f.salir.addEventListener("click", salir);
+
+        function nombrevalido() {
+          if (/^[\w]{1,20}$/.test(event.target.value)) {
+            nombre.classList.remove("error");
+            errornombre.innerHTML = "";
+          } else {
+            event.target.value = "";
+            let errornombre = document.getElementById("errornombre");
+            errornombre.innerHTML = "Error";
+            nombre.classList.add("error");
+          }
+        }
+        function dnivalido() {
+          if (calcularDNI(event.target.value) == event.target.value) {
+            dni.classList.remove("error");
+            errordni.innerHTML = "";
+          } else {
+            event.target.value = "";
+            let errordni = document.getElementById("errordni");
+            errordni.innerHTML = "Error";
+            dni.classList.add("error");
+          }
+        }
+        function npersonasvalido() {
+          if (event.target.value <= 25 && event.target.value >= 0) {
+            npersonas.classList.remove("error");
+            errornpersonas.innerHTML = "";
+          } else {
+            event.target.value = "";
+            let errornpersonas = document.getElementById("errornpersonas");
+            errornpersonas.innerHTML = "Error";
+            npersonas.classList.add("error");
+          }
+        }
+        function cocinavalido() {
+          if (event.target.value == "con" || event.target.value == "sin") {
+            cocina.classList.remove("error");
+            errorcocina.innerHTML = "";
+          } else {
+            event.target.value = "";
+            let errorcocina = document.getElementById("errorcocina");
+            errorcocina.innerHTML = "Error";
+            cocina.classList.add("error");
+          }
+        }
+
+        function reservar() {
+          event.preventDefault();
+          datos(nombre, dni, nPersonas, cocina, nSocio);
+        }
+        function anular() {
+          event.preventDefault();
+        }
+        function mostrar() {
+          event.preventDefault();
+        }
+
+        function salir() {
+          event.preventDefault();
+          document.body.innerHTML = "Hata pronto";
+        }
+        function calcularDNI(dni) {
+          let letras = [
+            "T",
+            "R",
+            "W",
+            "A",
+            "G",
+            "M",
+            "Y",
+            "F",
+            "P",
+            "D",
+            "X",
+            "B",
+            "N",
+            "J",
+            "Z",
+            "S",
+            "Q",
+            "V",
+            "H",
+            "L",
+            "C",
+            "K",
+            "E",
+          ];
+          let sinletra = dni.substr(0, dni.length - 1);
+          let resto = sinletra % 23;
+          return sinletra + letras[resto];
+        }
+      }
+    </script>
+  </body>
+</html>

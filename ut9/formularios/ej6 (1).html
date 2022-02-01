@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>u09e06_repaso</title>
+</head>
+<body>
+    <form method="POST" action="">
+        <ul>
+            <li><label for="c_nombre_apellidos">Nombre y apellidos: (*)</label>
+                <input type="text" name="nombre_apellidos" id="c_nombre_apellidos"></input>
+            </li>
+            <li><label for="c_dni">DNI: (*)</label>
+                <input type="text" name="dni" id="c_dni"></input>
+            </li>
+            <li><label for="c_nPersonas">Número de personas: (*)</label>
+                <input type="text" name="nPersonas" id="c_nPersonas"></input>
+            </li>
+            <li>
+                <label><input type="radio" name="cocina" value="Con">Con cocina</input></label>
+                <label><input type="radio" name="cocina" value="Sin">Sin cocina</input></label>
+            </li>
+            <li><label for="c_nSocio">Número de socio: </label>
+                <input type="text" name="nSocio" id="c_nSocio"></input>
+            </li>
+        </ul>
+        <input type="submit" name="reservar" value="RESERVAR" />
+        <input type="submit" name="anular" value="ANULAR" />
+        <input type="submit" name="mostrar" value="MOSTRAR" />
+        <input type="submit" name="salir" value="SALIR" />
+    </form>
+    <script>
+        class Reserva {
+            constructor(nombre, dni, nPersonas, cocina, nSocio = "") {
+                this.nombre = nombre;
+                this.dni = dni;
+                this.nPersonas = nPersonas;
+                this.cocina = cocina;
+                this.nSocio = nSocio;
+            }
+            toString() {
+                return `Nombre: ${this.nombre} | Dni: ${this.dni} | Nº personas: ${this.nPersonas} | ${this.cocina} cocina  | Nº socio: ${this.nSocio}`;
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+
+            let form = document.forms[0];
+            let reservas = [];
+
+            form.reservar.addEventListener("click", function(e) {
+                e.preventDefault();
+                validar();
+            })
+
+            form.anular.addEventListener("click", function(e) {
+                e.preventDefault();
+                anular();
+            })
+
+            form.mostrar.addEventListener("click", function(e) {
+                e.preventDefault();
+                mostrar();
+            })
+
+            form.salir.addEventListener("click", function(e) {
+                e.preventDefault();
+                document.body.innerHTML = "FIN DE LA APLICACION";
+            })
+
+            function validar() {
+                let nombre = form.nombre_apellidos.value;
+                let dni = form.dni.value;
+                let nPersonas = form.nPersonas.value;
+                let cocina = form.cocina.value;
+                let nSocio = form.nSocio.value;
+
+                if(isNaN(nombre)) {
+                    if(nif(dni)) {
+                        if(!isNaN(nPersonas) && nPersonas != "" && nPersonas <= 25) {
+                            if(cocina == "Con" || cocina == "Sin") {
+                                if(socio(nSocio)) {
+                                    reserva(nombre, dni, nPersonas, cocina, nSocio);
+                                    alert("Reserva a nombre de "+nombre+" realizada correctamente.");
+                                } else {
+                                    alert("ERROR. Rellene el campo nº socios correctamente.");
+                                    nSocio.value = "";
+                                }
+                            } else {
+                                alert("ERROR. Seleccione con cocina o sin cocina.");
+                            }
+                        } else {
+                            alert("ERROR. Rellene el campo nº personas correctamente.");
+                            nPersonas = "";
+                        }
+                    } else {
+                        dni = "";
+                    }
+                } else {
+                    alert("ERROR. Rellene el campo nombre y apellidos correctamente.");
+                    nombre = "";
+                }
+            }
+
+            function anular() {
+                let dniAnular = prompt("Introduce DNI de la reserva que desea anular: ", "");
+                let pos = buscarReserva(dniAnular);
+                if(pos != -1) {
+                    reservas.splice(pos, 1);
+                    alert("Reserva con dni "+dniAnular+" anulada correctamente");
+                } else {
+                    alert("ERROR. No se ha encontrado ninguna reserva con el dni "+dniAnular);
+                }
+            }
+
+            function mostrar() { 
+                for(let i=0; i<reservas.length; i++) {
+                    alert(`RESERVA ${i+1}:\n`+reservas[i].toString());
+                }
+            }
+
+            function reserva(nombre, dni, nPersonas, cocina, nSocio) {
+                let object = new Reserva(nombre, dni, nPersonas, cocina, nSocio);
+                reservas.push(object);
+                limpiar();
+            }
+
+            function buscarReserva(dni) {
+                return reservas.findIndex(function(item, pos, array) {
+                    return (item.dni == dni);
+                })
+            }
+
+            function limpiar() {
+                form.nombre_apellidos.value = "";
+                form.dni.value = "";
+                form.nPersonas.value = "";
+                form.cocina[0].checked = false;
+                form.cocina[1].checked = false;
+                form.nSocio.value = "";
+            }
+
+            function socio(nSocio) {
+                let expresion_regular_socio = /^[a-zA-Z]{2}\d{3}$/;
+                if(expresion_regular_socio.test(nSocio) == true) {
+                    return true;
+                } else {
+                    if(nSocio == "") {
+                        return true;
+                    }
+                }
+            }
+
+            function nif(dni) {
+                let numero;
+                let letraDNI;
+                let letra;
+                let expresion_regular_dni = /^\d{8}[a-zA-Z]$/;
+                
+                if(expresion_regular_dni.test(dni) == true) {
+                    numero = dni.substr(0, dni.length-1);
+                    letraDNI = dni.substr(dni.length-1, 1);
+                    numero = numero % 23;
+                    letra = "TRWAGMYFPDXBNJZSQVHLCKET";
+                    letra = letra.substring(numero, numero+1);
+                    if (letra != letraDNI.toUpperCase()) {
+                        alert("DNI erroneo, la letra del NIF no se corresponde");
+                    } else {
+                        let pos = buscarReserva(dni);
+                        if(pos == -1) {
+                            return true;
+                        } else {
+                            alert("Dni "+dni+" ya tiene una reserva solicitada.");
+                        }
+                    }
+                } else {
+                    alert("DNI erroneo, formato no válido");
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>
