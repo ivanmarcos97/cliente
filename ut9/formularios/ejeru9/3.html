@@ -50,7 +50,7 @@
       <p>
         <label for="numcuenta">Numero de cuenta:</label>
         <input type="text" name="numcuenta" id="numcuenta" />
-        <span id="errornumcuenta" style="color: red"></span>
+        <span id="errornumcuenta"></span>
       </p>
       <p>
         <button type="submit" id="enviar">Enviar</button>
@@ -125,11 +125,7 @@
           }
         }
         function compovalido() {
-          if (
-            /^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/.test(
-              event.target.value
-            )
-          ) {
+          if (/^\d+[g]([A-Z]{1,2}\d?){2}$/.test(event.target.value)) {
             compo.classList.remove("error");
             errorcompo.innerHTML = "";
           } else {
@@ -140,16 +136,130 @@
           }
         }
         function numcuentavalido() {
-          if (
-            /^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/.test(
-              event.target.value
-            )
-          ) {
+          let bien = true;
+          let numcuenseparado = event.target.value.split("");
+          let numfinal = event.target.value.split("-");
+          let letra12 = numcuenseparado[0] + numcuenseparado[1];
+          let letra1 = numcuenseparado[0];
+          let letra2 = numcuenseparado[1];
+          let digitos;
+          let pdigit;
+          let sdigit;
+
+          //DOS PRIMERAS LETRAS
+          if (!/^[A-Z]{2}$/.test(letra12)) {
+            bien = false;
+          }
+
+          let letras = [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "W",
+            "X",
+            "Y",
+            "Z",
+          ];
+          let num1 = 0;
+          let num2 = 0;
+          let sum = 0;
+          for (let i = 0; i < letras.length; i++) {
+            if (letras[i] == letra1) {
+              num1 = i + 1;
+            }
+            if (letras[i] == letra2) {
+              num2 = i + 1;
+            }
+          }
+          sum = +num1 + num2;
+          if (sum < 10) {
+            sum = "0" + sum;
+          }
+          //DOS NUMEROS POSICION 2 Y 3
+          if (numcuenseparado[2] + numcuenseparado[3] != sum) {
+            bien = false;
+          }
+          //PRIMER GUION
+          if (numcuenseparado[4] != "-") {
+            bien = false;
+          }
+          //12 DIGITOS DE CUENTA
+          digitos =
+            numcuenseparado[5] +
+            numcuenseparado[6] +
+            numcuenseparado[7] +
+            numcuenseparado[8] +
+            numcuenseparado[9] +
+            numcuenseparado[10] +
+            numcuenseparado[11] +
+            numcuenseparado[12] +
+            numcuenseparado[13] +
+            numcuenseparado[14] +
+            numcuenseparado[15] +
+            numcuenseparado[16];
+
+          if (!/^[0-9]{12}$/.test(digitos)) {
+            bien = false;
+          }
+
+          //SEGUNDO GUION
+          if (numcuenseparado[17] != "-") {
+            bien = false;
+          }
+
+          //PRIMER DIGITO
+
+          pdigit =
+            Number(numcuenseparado[5]) +
+            Number(numcuenseparado[6]) +
+            Number(numcuenseparado[7]) +
+            Number(numcuenseparado[8]) +
+            Number(numcuenseparado[9]) +
+            Number(numcuenseparado[10]);
+          pdigit = parseInt(pdigit / 6);
+
+          if (pdigit != numcuenseparado[18]) {
+            bien = false;
+          }
+          //SEGUNDO DIGITO
+
+          sdigit =
+            Number(numcuenseparado[11]) +
+            Number(numcuenseparado[12]) +
+            Number(numcuenseparado[13]) +
+            Number(numcuenseparado[14]) +
+            Number(numcuenseparado[15]) +
+            Number(numcuenseparado[16]);
+          sdigit = parseInt(sdigit / 6);
+          if (sdigit != numcuenseparado[19]) {
+            bien = false;
+          }
+          //COMPROBACION FINAL AB03-234567789878-47
+          if (bien == true) {
             numcuenta.classList.remove("error");
-            errornumcuenta.innerHTML = "";
+            errornumcuenta.style.color = "black";
+            errornumcuenta.innerHTML = numfinal[0] + numfinal[1] + numfinal[2];
           } else {
             event.target.value = "";
             let errornumcuenta = document.getElementById("errornumcuenta");
+            errornumcuenta.style.color = "red";
             errornumcuenta.innerHTML = "Error";
             numcuenta.classList.add("error");
           }
