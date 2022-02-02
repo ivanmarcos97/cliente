@@ -36,20 +36,23 @@
         <input type="text" name="npersonas" id="npersonas" />
         <span id="errornpersonas" style="color: red"></span>
       </p>
-      <p>
-        <label id="cocina"> Sala con cocina:</label><br />
-        <span id="errorcocina" style="color: red"></span>
+      <fieldset>
+        <legend>cocina</legend>
 
-        <input id="concoci" type="radio" name="cocina" value="con" /><label
-          for="concoci"
-          >Con cocina</label
-        >
-        <br />
-        <input id="sincoci" type="radio" name="cocina" value="sin" /><label
-          for="sincoci"
-          >Sin cocina</label
-        >
-      </p>
+        <p>
+          <span id="errorcocina" style="color: red"></span>
+          <label>
+            <input type="radio" name="cocina" value="con" />
+
+            Con cocina</label
+          >
+          <br />
+          <label>
+            <input type="radio" name="cocina" value="sin" />
+            Sin cocina</label
+          >
+        </p>
+      </fieldset>
       <p>
         <label for="nsocio">Numero de socio:</label>
         <input type="text" name="nsocio" id="nsocio" />
@@ -133,7 +136,15 @@
 
         function reservar() {
           event.preventDefault();
-          datos(nombre, dni, nPersonas, cocina, nSocio);
+          if (
+            f.nombre.value != "" &&
+            f.dni.value != "" &&
+            f.nPersonas.value != "" &&
+            f.cocina.value != ""
+          ) {
+            datos(nombre, dni, nPersonas, cocina, nSocio);
+            alert("Reserva creada");
+          }
         }
         function anular() {
           event.preventDefault();
