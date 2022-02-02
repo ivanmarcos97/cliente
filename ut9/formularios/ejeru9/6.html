@@ -15,6 +15,8 @@
       input.error {
         box-shadow: 0 0 5px 1px red;
       }
+      textarea{height: 500px;
+      width: 1000px;}
     </style>
   </head>
   <body>
@@ -41,16 +43,10 @@
 
         <p>
           <span id="errorcocina" style="color: red"></span>
-          <label>
-            <input type="radio" name="cocina" value="con" />
-
-            Con cocina</label
-          >
-          <br />
-          <label>
-            <input type="radio" name="cocina" value="sin" />
-            Sin cocina</label
-          >
+         
+            <label><input type="radio" name="cocina" value="SI" checked>Con cocina</input></label><br>
+            <label><input type="radio" name="cocina" value="NO">Sin cocina</input></label>
+        
         </p>
       </fieldset>
       <p>
@@ -64,6 +60,9 @@
         <button type="submit" id="mostrar">Mostrar</button>
         <button type="submit" id="salir">Salir</button>
       </p>
+      <p>
+        <textarea name="area"></textarea>
+      </p>
     </form>
     <script>
       class Datos {
@@ -74,15 +73,21 @@
           this.cocina = cocina;
           this.nsocio = nsocio;
         }
+        mostrarobjeto() {
+          let resultado=`Nombre de la reserva: ${this.nombre} \nDni de la reserva: ${this.dni} \nNumero de personas de la reserva: ${this.npersonas} \nCocina incluida:  ${this.cocina} \nNumero de socio: ${this.nsocio}\n----------------------------------------------------------\n\n`;
+                return resultado;
+            }
       }
       document.addEventListener("DOMContentLoaded", programa);
       function programa() {
         let f = document.forms.reservas;
+        let datos = [];
+        let cocina=f.cocina.value;
 
         f.nombre.addEventListener("change", nombrevalido);
         f.dni.addEventListener("change", dnivalido);
         f.npersonas.addEventListener("change", npersonasvalido);
-        f.cocina.addEventListener("change", cocinavalido);
+        f.nsocio.addEventListener("change", nsociovalido);
 
         f.reservar.addEventListener("click", reservar);
         f.anular.addEventListener("click", anular);
@@ -122,40 +127,69 @@
             npersonas.classList.add("error");
           }
         }
-        function cocinavalido() {
-          if (event.target.value == "con" || event.target.value == "sin") {
-            cocina.classList.remove("error");
-            errorcocina.innerHTML = "";
+        function nsociovalido() {
+          if (/^[A-Z]{2}[0-9]{3}$/.test(event.target.value)) {
+            nsocio.classList.remove("error");
+            errornsocio.innerHTML = "";
           } else {
             event.target.value = "";
-            let errorcocina = document.getElementById("errorcocina");
-            errorcocina.innerHTML = "Error";
-            cocina.classList.add("error");
+            let errornpersonas = document.getElementById("errornsocio");
+            errornsocio.innerHTML = "Error";
+            nsocio.classList.add("error");
           }
         }
+       
 
         function reservar() {
           event.preventDefault();
+         let repetido=false;
           if (
             f.nombre.value != "" &&
             f.dni.value != "" &&
-            f.nPersonas.value != "" &&
+            f.npersonas.value != "" &&
             f.cocina.value != ""
-          ) {
-            datos(nombre, dni, nPersonas, cocina, nSocio);
-            alert("Reserva creada");
-          }
-        }
+          ) {      
+            datos.findIndex(function(item) {
+                   repetido= (item.dni == dni.value);
+                })
+                if(repetido==true){
+            alert("Ya hay una reserva con este Dni");
+            }else{     
+            let reserva = new Datos(nombre.value, dni.value, npersonas.value, cocina, nsocio.value);
+               datos.push(reserva);
+               alert("Reserva creada");
+           }  }}
+          
+         
+            
+          
+        
         function anular() {
           event.preventDefault();
+          let reservaborrar = prompt("DNI de la reserva que quiere cancelar");
+                let pos = datos.findIndex(function(item, pos) { return (item.dni == reservaborrar);}) 
+                if(pos != -1) {
+                    datos.splice(pos, 1);
+                    alert("Se ha anulado la sala reservada con DNI "+reservaborrar);
+                    f.area.innerHTML="";
+                    f.area.innerHTML+="RESERVA Nº "+i+"\n"+datos[i].mostrarobjeto();
+                } else {
+                    alert("No hay ninguna reserva con DNI "+reservaborrar);
+                }
         }
         function mostrar() {
           event.preventDefault();
+          f.area.innerHTML="";
+          for(let i=0; i<datos.length; i++) {
+                   
+                    f.area.innerHTML+="RESERVA Nº "+i+"\n"+datos[i].mostrarobjeto();
+                }
+        
         }
 
         function salir() {
           event.preventDefault();
-          document.body.innerHTML = "Hata pronto";
+          document.body.innerHTML = "Hasta pronto";
         }
         function calcularDNI(dni) {
           let letras = [
