@@ -72,17 +72,42 @@
           this.npersonas = npersonas;
           this.cocina = cocina;
           this.nsocio = nsocio;
+          this.precio = this.calprecio();
+          
         }
         mostrarobjeto() {
-          let resultado=`Nombre de la reserva: ${this.nombre} \nDni de la reserva: ${this.dni} \nNumero de personas de la reserva: ${this.npersonas} \nCocina incluida:  ${this.cocina} \nNumero de socio: ${this.nsocio}\n----------------------------------------------------------\n\n`;
+          let resultado=`Nombre de la reserva: ${this.nombre} \nDni de la reserva: ${this.dni} \nNumero de personas de la reserva: ${this.npersonas} \nCocina incluida:  ${this.cocina} \nNumero de socio: ${this.nsocio}\nEl precio es : ${this.precio}\n----------------------------------------------------------\n\n`;
                 return resultado;
             }
+          
+        calprecio(){
+          let precio;
+          let predescu;
+          if(this.nsocio==undefined||this.nsocio==null||this.nsocio==""){
+            if(this.cocina=="SI"){
+precio="150€";
+            }else{
+              precio="100€";
+            }
+          }else{
+            if(this.cocina=="SI"){
+          predescu=150*0.9;
+          precio=predescu+"€";
+          }else{
+            predescu=100*0.9;
+          precio=predescu+"€";
+          }
+        }
+        
+          
+          return precio;
       }
+    }
       document.addEventListener("DOMContentLoaded", programa);
       function programa() {
         let f = document.forms.reservas;
         let datos = [];
-        let cocina=f.cocina.value;
+        let cocina=f.cocina;
 
         f.nombre.addEventListener("change", nombrevalido);
         f.dni.addEventListener("change", dnivalido);
@@ -151,11 +176,14 @@
           ) {      
             datos.findIndex(function(item) {
                    repetido= (item.dni == dni.value);
+                   if(repetido==true){
+                     return repetido;
+                   }
                 })
                 if(repetido==true){
             alert("Ya hay una reserva con este Dni");
             }else{     
-            let reserva = new Datos(nombre.value, dni.value, npersonas.value, cocina, nsocio.value);
+            let reserva = new Datos(nombre.value, dni.value, npersonas.value, cocina.value, nsocio.value);
                datos.push(reserva);
                alert("Reserva creada");
            }  }}
@@ -172,7 +200,7 @@
                     datos.splice(pos, 1);
                     alert("Se ha anulado la sala reservada con DNI "+reservaborrar);
                     f.area.innerHTML="";
-                    f.area.innerHTML+="RESERVA Nº "+i+"\n"+datos[i].mostrarobjeto();
+                   
                 } else {
                     alert("No hay ninguna reserva con DNI "+reservaborrar);
                 }
