@@ -61,7 +61,7 @@
         <button type="submit" id="salir">Salir</button>
       </p>
       <p>
-        <textarea name="area"></textarea>
+        <textarea name="area" disabled></textarea>
       </p>
     </form>
     <script>
@@ -120,7 +120,7 @@ precio="150€";
         f.salir.addEventListener("click", salir);
 
         function nombrevalido() {
-          if (/^[\w]{1,20}$/.test(event.target.value)) {
+          if (/^[a-zA-Z ,.']+$/i.test(event.target.value)) {
             nombre.classList.remove("error");
             errornombre.innerHTML = "";
           } else {
