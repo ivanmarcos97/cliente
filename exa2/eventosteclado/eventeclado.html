@@ -1,0 +1,29 @@
+<form name="formulario" id="formulario">
+  <label for="nombre"> Nombre: </label>
+
+  <input type="text" id="nombre" name="nombre" />
+
+  <label for="apellidos"> Apellidos: </label>
+
+  <input type="text" id="apellidos" name="apellidos" />
+
+  <label for="provincia"> Provincia: </label>
+
+  <input type="text" id="provincia" name="provincia" />
+
+  <input type="button" id="enviar" value="Enviar" />
+</form>
+
+<script type="text/javascript">
+  function cambiar(e) {
+    if (e.code == "Enter")
+      // Código de la tecla Enter
+      document.forms.nextElementSibling.focus();
+  }
+
+  let inputs = document.getElementsByTagName("input");
+
+  for (i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener("keydown", cambiar);
+  }
+</script>
