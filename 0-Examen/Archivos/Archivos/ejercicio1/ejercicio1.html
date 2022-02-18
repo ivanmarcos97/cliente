@@ -26,6 +26,9 @@
       .rojo {
         border-color: red;
       }
+      table {
+        border: 1px solid black;
+      }
     </style>
     <script src="ej1.js"></script>
   </head>
@@ -36,35 +39,38 @@
       <ul>
         <li>
           <label for="codigo">Código del módulo: </label
-          ><input type="text" id="numMatricula" name="numMatricula" /><span
-            id="numMatriculaErr"
+          ><input type="text" id="codigo" name="codigo" /><span
+            id="codigoErr"
           ></span>
         </li>
         <li>
           <label for="descripcion">Descripción: </label
-          ><input type="text" id="nif" name="nif" /><span id="nifErr"></span>
+          ><input type="text" id="descripcion" name="descripcion" /><span
+            id="descripcionErr"
+          ></span>
         </li>
         <li>
           <label for="curso">Curso: </label
-          ><input type="text" id="nombre" name="nombre" /><span
-            id="nombreErr"
+          ><input type="text" id="curso" name="curso" /><span
+            id="cursoErr"
           ></span>
         </li>
         <li>
           <label for="codigoCiclo">Codigo Ciclo: </label
-          ><input type="text" id="apellidos" name="apellidos" /><span
-            id="apellidosErr"
+          ><input type="text" id="codigoCiclo" name="codigoCiclo" /><span
+            id="codigoCicloErr"
           ></span>
         </li>
         <li>
           <label for="horas">Horas: </label
-          ><input type="text" id="tfnoMovil" name="tfnoMovil" /><span
-            id="tfnoMovilErr"
+          ><input type="text" id="horas" name="horas" /><span
+            id="horasErr"
           ></span>
         </li>
       </ul>
       <button id="grabarModulo">Grabar módulo</button>
       <button id="guardarDatos">Guardar datos</button>
     </form>
+    <table id="tabla"></table>
   </body>
 </html>
