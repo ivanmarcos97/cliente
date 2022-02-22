@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      div {
+        background-color: cadetblue;
+        border-radius: 30%;
+        height: 200px;
+        width: 200px;
+        display: inline-block;
+        margin: 5px;
+      }
+      div:nth-child(even) {
+        background-color: chartreuse;
+      }
+      div:nth-child(4) {
+        display: none;
+      }
+    </style>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <button id="a">ocultar</button>
+
+    <script src="./jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(inicio);
+      function inicio() {
+        for (var i = 0, limit = 100; i < limit; i++) {
+          $("div:nth-child(1)").toggle(500);
+
+          $("div:nth-child(4)").toggle(2000);
+
+          // Este bloque de código será ejecutado 100 veces
+          console.log("Currently at " + i);
+          // Nota: el último registro que se mostrará
+          // en la consola será "Actualmente en 99"
+        }
+      }
+      document.getElementById("a");
+      addEventListener("click", function () {
+        $("div").slideToggle(1000);
+      });
+    </script>
+  </body>
+</html>
