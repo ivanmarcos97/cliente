@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="formu" action="" method="post">
+      <p>
+        <label for="loca">Localidad:</label>
+
+        <input type="text" name="loca" id="loca" />
+        <span id="loca" style="color: red"></span>
+      </p>
+      <button type="submit" id="enviar">Enviar</button>
+    </form>
+    <div id="resultado"></div>
+    <script>
+      let localidad = document.getElementById("loca");
+      let boton = document.getElementById("enviar");
+      boton.addEventListener("click", comprobar);
+
+      async function comprobar(e) {
+        e.preventDefault();
+
+        let response = await fetch("arraylocalidades.php", {
+          method: "POST",
+          body: new FormData(formu),
+        });
+
+        let result = await response.text();
+        let div = document.getElementById("resultado");
+        if (result == "N") {
+          div.style.color = "red";
+        } else if (result == "S") {
+          div.style.color = "green";
+        }
+        div.innerHTML = result;
+      }
+    </script>
+  </body>
+</html>
